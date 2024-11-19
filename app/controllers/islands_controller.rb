@@ -15,6 +15,6 @@ class IslandsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :description, :location, :gps_longitude, :gps_latitude, :price_per_night; :capacity)
+    params.require(:list).permit(:name, :description, :location, :gps_longitude, :gps_latitude, :price_per_night, :capacity)
       end
 end
