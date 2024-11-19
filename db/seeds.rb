@@ -198,21 +198,21 @@ islands = Island.create!([
 ])
 puts "Islands seeded!"
 
-# # Création de 2 à 3 réservations par utilisateur
-# users.each do |user|
-#   # Sélection de 2 à 3 îles aléatoires
-#   selected_islands = islands.sample(3)
+# Création de 2 à 3 réservations par utilisateur
+users.each do |user|
+  # Sélection de 2 à 3 îles aléatoires
+  selected_islands = islands.sample(3)
 
-#   # Pour chaque île sélectionnée, créer une réservation
-#   selected_islands.each do |island|
-#     Booking.create!(
-#       start_date: Date.today + rand(1..10), # Date de début dans les 10 prochains jours
-#       end_date: Date.today + rand(11..20),   # Date de fin entre 11 et 20 jours après
-#       status: ["confirmed", "pending", "cancelled"].sample, # Statut aléatoire
-#       island: island,
-#       user: user
-#     )
-#   end
-# end
+  # Pour chaque île sélectionnée, créer une réservation
+  selected_islands.each do |island|
+    Booking.create!(
+      start_date: Date.today + rand(1..10), # Date de début dans les 10 prochains jours
+      end_date: Date.today + rand(11..20),   # Date de fin entre 11 et 20 jours après
+      status: ["confirmed", "pending", "cancelled"].sample, # Statut aléatoire
+      island: island,
+      user: user
+    )
+  end
+end
 
 # puts "Bookings created!"
