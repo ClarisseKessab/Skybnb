@@ -1,0 +1,7 @@
+<ul>
+  <% @bookings.each do |booking| %>
+    <li class="list-group-item"><p>Date d'arrivée :<%= booking.start_date %></p><p>Date de départ :<%= booking.end_date %></p></li>
+    <li class="list-group-item"><p>Id de l'île: <%= booking.island %></p></li>
+    <li class="list-group-item"><p>Status: <%= booking.status %></p></li>
+  <% end %>
+</ul>
