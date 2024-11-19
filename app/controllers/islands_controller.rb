@@ -1,4 +1,4 @@
-class IslandController < ApplicationController
+class IslandsController < ApplicationController
   def new
     @island = Island.new
   end
