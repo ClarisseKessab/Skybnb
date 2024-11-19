@@ -1,11 +1,11 @@
 <h1>Browse Islands</h1>
-<%= form_with(url: islands_path, method: :get, local: true) do |form| %>
+
 
 <ul>
   <% @islands.each do |island| %>
     <li><%= island.name %></li>
     <li><%= island.price%></li>
-    <li><%= island.capacity%></li>
-    <li><%= island.location%></li>
+    <li><%= island.capacity %></li>
+    <li><%= island.location %></li>
   <% end %>
 </ul>
