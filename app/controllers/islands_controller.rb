@@ -1,4 +1,4 @@
-class IslandController < ApplicationController
+class IslandsController < ApplicationController
   def new
     @island = Island.new
   end
@@ -30,6 +30,11 @@ class IslandController < ApplicationController
   private
 
   def list_params
+<<<<<<< HEAD:app/controllers/island_controller.rb
     params.require(:list).permit(:name, :description, :location, :gps_longitude, :gps_latitude, :price_per_night; :capacity)
   end
+=======
+    params.require(:list).permit(:name, :description, :location, :gps_longitude, :gps_latitude, :price_per_night, :capacity)
+      end
+>>>>>>> master:app/controllers/islands_controller.rb
 end
