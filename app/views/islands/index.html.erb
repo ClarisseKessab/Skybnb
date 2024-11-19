@@ -5,6 +5,13 @@
     <div class="col">
       <div class="card h-100">
         <div class="card-body">
+          <% if @article.photos.attached? %>
+            <% @article.photos.each do |photo| %>
+              <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+            <% end %>
+          <% else %>
+            <p>Aucune photo disponible pour cet article.</p>
+          <% end %>
           <h5 class="card-title"><%= island.name %></h5>
           <p class="card-text">
             <strong>Price per night:</strong> $<%= island.price_per_night %><br>
