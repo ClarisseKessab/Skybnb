@@ -13,7 +13,7 @@
         <span class="input-group-text">€</span>
       </div>
     </div>
+     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.submit class: "btn btn-primary"%>
   <% end %>
 </div>
-
