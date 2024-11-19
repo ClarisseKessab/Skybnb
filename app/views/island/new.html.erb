@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Create a New Island</h1>
+  <%= simple_form_for(@island) do |f| %>
+    <%= f.input :name, placeholder: "Enter the island name"%>
+    <%= f.input :desription, placeholder: "Describe the island" %>
+    <%= f.input :location, placeholder: "Where is the island located?" %>
+    <%= f.input :gps_longitude, placeholder: "Enter longitude" %>
+    <%= f.input :gps_latitude, placeholder: "Enter latitude" %>
+    <%= f.input :capacity,  placeholder: "Max capacity" %>
+    <div class="input-group">
+      <%= f.input :price_per_night, placeholder: "Enter price" %>
+      <div class="input-group-prepend">
+        <span class="input-group-text">€</span>
+      </div>
+    </div>
+    <%= f.submit class: "btn btn-info"%>
+  <% end %>
+</div>
