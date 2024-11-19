@@ -5,6 +5,7 @@ class IslandsController < ApplicationController
 
   def create
     @island = Island.new(island_params)
+    @island.user = current_user
     if @island.save
       redirect_to island_path(@island)
     else
@@ -23,13 +24,12 @@ class IslandsController < ApplicationController
   end
 
   def show
-    @bookings = Booking.new
-    @reviews = Review.new
+    @island = Island.find(params[:id])
   end
 
   private
 
   def island_params
-    params.require(:list).permit(:name, :description, :location, :gps_longitude, :gps_latitude, :price_per_night, :capacity, photos: [])
+    params.require(:island).permit(:name, :description, :location, :gps_longitude, :gps_latitude, :price_per_night, :capacity)
   end
 end
