@@ -1,11 +1,12 @@
 <h1>Browse Islands</h1>
 
 
-<ul>
+
   <% @islands.each do |island| %>
-    <li><%= island.name %></li>
-    <li><%= island.price_per_night %></li>
-    <li><%= island.capacity %></li>
-    <li><%= island.location %></li>
+    <ul>
+      <li><%= island.name %></li>
+      <li><%= island.price_per_night %></li>
+      <li><%= island.capacity %></li>
+      <li><%= island.location %></li>
+    </ul>
   <% end %>
-</ul>
