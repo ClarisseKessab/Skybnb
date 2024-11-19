@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_19_104918) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_19_133952) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +35,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_19_104918) do
     t.datetime "updated_at", null: false
     t.string "gps_longitude"
     t.string "gps_latitude"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_islands_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +52,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_19_104918) do
   end
 
   add_foreign_key "bookings", "islands"
+  add_foreign_key "islands", "users"
 end
