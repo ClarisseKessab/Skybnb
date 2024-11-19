@@ -214,5 +214,4 @@ users.each do |user|
     )
   end
 end
-
-# puts "Bookings created!"
+puts "Bookings created!"
