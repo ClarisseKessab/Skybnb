@@ -5,8 +5,8 @@
     <div class="col">
       <div class="card h-100">
         <div class="card-body">
-          <% if @article.photos.attached? %>
-            <% @article.photos.each do |photo| %>
+          <% if island.photos.attached? %>
+            <% island.photos.each do |photo| %>
               <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
             <% end %>
           <% else %>
