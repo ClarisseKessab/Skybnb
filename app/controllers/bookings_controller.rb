@@ -2,7 +2,8 @@ class BookingsController < ApplicationController
   before_action :set_guest, only: %i[new create]
 
   def index
-    @bookings = Booking.where(user: current_user)
+    @guest_bookings = current_user.bookings
+    @owner_bookings = Booking.joins(:island).where(islands: { user_id: current_user.id })
   end
 
   def new
