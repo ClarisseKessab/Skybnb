@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <h1 class="text-center mb-4">Edit my Island</h1>
-  <%= simple_form_for(@island) do |f| %>
+  <%= simple_form_for [:owner, @island] do |f| %>
     <%= f.input :name, placeholder: "Enter the island name"%>
     <%= f.input :description, placeholder: "Describe the island" %>
     <%= f.input :location, placeholder: "Where is the island located?" %>
@@ -8,12 +8,22 @@
     <%= f.input :gps_latitude, placeholder: "Enter latitude" %>
     <%= f.input :capacity,  placeholder: "Max capacity" %>
     <div class="input-group">
-      <%= f.input :price_per_night, placeholder: "Enter price" %>
       <div class="input-group-prepend">
-        <span class="input-group-text">€</span>
+        <span class="input-group-text">$</span>
       </div>
+      <%= f.input :price_per_night, placeholder: "Enter price" %>
     </div>
-     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <% if @island.photos.attached? %>
+      <div class="existing-photos">
+        <% @island.photos.each do |photo| %>
+          <div class="photo-item">
+            <%= image_tag photo, class: "thumbnail", height: 300, width: 400, crop: :fill %>
+            <%= link_to "Delete", delete_photo_owner_island_path(@island, photo_id: photo.id), data: { turbo_method: :delete, confirm: "Êtes-vous sûr de vouloir supprimer cette photo ?" }, class: "delete-photo" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
     <%= f.submit class: "btn btn-primary"%>
   <% end %>
 </div>

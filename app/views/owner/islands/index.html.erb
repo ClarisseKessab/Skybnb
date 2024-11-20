@@ -1,18 +1,31 @@
-<h1>My islands</h1>
-
+<h1>My Islands</h1>
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   <% @islands.each do |island| %>
     <div class="col">
       <div class="card h-100">
         <div class="card-body">
-          <% if island.photos.attached? %>
-            <% island.photos.each do |photo| %>
-              <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-            <% end %>
-          <% else %>
-            <p>Aucune photo disponible pour cet article.</p>
-          <% end %>
+          <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 500px; margin: auto;">
+            <div class="carousel-inner">
+              <% if island.photos.attached? %>
+                <% island.photos.each_with_index do |photo, index| %>
+                  <div class="carousel-item <%= 'active' if index.zero? %>">
+                    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+                  </div>
+                <% end %>
+              <% else %>
+                <p>No picture available for this island.</p>
+              <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
           <h5 class="card-title"><%= island.name %></h5>
           <p class="card-text">
             <strong>Price per night:</strong> $<%= island.price_per_night %><br>
