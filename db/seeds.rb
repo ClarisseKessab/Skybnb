@@ -8,6 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+require "open-uri"
+
 # Suppression de toutes les réservations existantes
 Booking.destroy_all
 
@@ -33,18 +35,9 @@ user10 = User.create!(email: 'user10@example.com', password: 'password123', firs
 users = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10];
 puts "Users seeded!"
 
+
 # Seed des îles flottantes
 islands = Island.create!([
-  {
-    name: "Île jungle sauvage",
-    description: "Une île luxuriante peuplée de singes amicaux et d'une cascade portable.",
-    location: "Amazonie flottante",
-    price_per_night: 200.00,
-    capacity: 10,
-    gps_longitude: "-63.1316",
-    gps_latitude: "-3.4653",
-    user: user1 # Utilisation de user1 ici
-  },
   {
     name: "Île jungle sauvage",
     description: "Une île luxuriante peuplée de singes amicaux et d'une cascade portable.",
@@ -197,6 +190,66 @@ islands = Island.create!([
   }
 ])
 puts "Islands seeded!"
+
+file1 = URI.parse("https://i.postimg.cc/63HgQKSj/DALL-E-2024-11-18-11-34-41-A-lush-floating-jungle-island-with-vibrant-green-trees-a-cascading-wat.png").open
+islands[0].photos.attach(io: file1, filename: "jungle_island.png", content_type: "image/png")
+islands[0].save
+
+file2 = URI.parse("https://i.postimg.cc/s24bt7JR/DALL-E-2024-11-18-11-34-54-A-serene-floating-spa-island-with-luxurious-jacuzzis-steaming-thermal.png").open
+islands[1].photos.attach(io: file2, filename: "spa_island.png", content_type: "image/png")
+islands[1].save
+
+file3 = URI.parse("https://i.postimg.cc/xd2WxtMR/DALL-E-2024-11-18-11-34-58-A-dramatic-floating-volcanic-island-with-a-miniature-active-volcano-spe.png").open
+islands[2].photos.attach(io: file3, filename: "volcanic_island.png", content_type: "image/png")
+islands[2].save
+
+file4 = URI.parse("https://i.postimg.cc/xCjBY8sN/DALL-E-2024-11-18-11-35-02-A-vibrant-floating-disco-island-with-a-glowing-multicolored-dance-floo.png").open
+islands[3].photos.attach(io: file4, filename: "disco_island.png", content_type: "image/png")
+islands[3].save
+
+file5 = URI.parse("https://i.postimg.cc/d1SNYBkg/DALL-E-2024-11-18-11-35-04-A-whimsical-floating-medieval-island-featuring-a-small-stone-castle-wit.png").open
+islands[4].photos.attach(io: file5, filename: "medieval_island.png", content_type: "image/png")
+islands[4].save
+
+file6 = URI.parse("https://i.postimg.cc/D08DJD32/DALL-E-2024-11-18-11-35-09-A-lively-floating-pirate-island-with-a-wooden-pirate-ship-docked-a-tre.png").open
+islands[5].photos.attach(io: file6, filename: "pirate_island.png", content_type: "image/png")
+islands[5].save
+
+file7 = URI.parse("https://i.postimg.cc/T24BMRnh/DALL-E-2024-11-18-11-35-13-A-tranquil-floating-Zen-island-featuring-a-beautifully-landscaped-Japan.png").open
+islands[6].photos.attach(io: file7, filename: "zen_island.png", content_type: "image/png")
+islands[6].save
+
+file8 = URI.parse("https://i.postimg.cc/6qgPd0BC/DALL-E-2024-11-18-11-35-16-A-whimsical-floating-desert-island-with-golden-sand-dunes-a-shimmering.png").open
+islands[7].photos.attach(io: file8, filename: "desert_island.png", content_type: "image/png")
+islands[7].save
+
+file9 = URI.parse("https://i.postimg.cc/sgSk4tQx/DALL-E-2024-11-18-11-35-18-A-magical-floating-ice-and-snow-island-featuring-glowing-igloos-radiati.png").open
+islands[8].photos.attach(io: file9, filename: "ice_island.png", content_type: "image/png")
+islands[8].save
+
+file10 = URI.parse("https://i.postimg.cc/kXRz7kys/DALL-E-2024-11-18-11-35-21-A-fantastical-floating-prehistoric-jungle-island-covered-in-dense-tropi.png").open
+islands[9].photos.attach(io: file10, filename: "prehistoric_island.png", content_type: "image/png")
+islands[9].save
+
+file11 = URI.parse("https://i.postimg.cc/pLDSFz4n/DALL-E-2024-11-18-11-35-25-A-magical-floating-underwater-themed-island-encased-in-a-giant-transpar.png").open
+islands[10].photos.attach(io: file11, filename: "magical_island.png", content_type: "image/png")
+islands[10].save
+
+file12 = URI.parse("https://i.postimg.cc/N0DPNYgs/DALL-E-2024-11-18-11-35-28-A-vibrant-floating-carnival-island-featuring-colorful-carousels-roller.png").open
+islands[11].photos.attach(io: file12, filename: "carnival_island.png", content_type: "image/png")
+islands[11].save
+
+file13 = URI.parse("https://i.postimg.cc/dQhwTNBk/DALL-E-2024-11-18-11-35-33-A-mystical-floating-island-with-ancient-ruins-including-large-crumblin.png").open
+islands[12].photos.attach(io: file13, filename: "mystical_island.png", content_type: "image/png")
+islands[12].save
+
+file14 = URI.parse("https://i.postimg.cc/44jZvvL8/DALL-E-2024-11-18-11-35-37-A-magical-floating-island-inspired-by-a-famous-wizarding-school-featur.png").open
+islands[13].photos.attach(io: file14, filename: "wizarding_island.png", content_type: "image/png")
+islands[13].save
+
+file15 = URI.parse("https://i.postimg.cc/bJvVWMJQ/DALL-E-2024-11-18-11-35-41-A-floating-science-fiction-island-inspired-by-a-space-fantasy-featurin.png").open
+islands[14].photos.attach(io: file15, filename: "scifi_island.png", content_type: "image/png")
+islands[14].save
 
 # Création de 2 à 3 réservations par utilisateur
 users.each do |user|
