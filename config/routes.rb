@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
 
-  resources :islands, only: [:index, :show, :new, :create, :edit, :update] do
-    resources :bookings, only: [:index, :show, :edit, :update, :new, :create]
+  resources :islands, only: [:index, :show, :new, :create] do
+    resources :bookings, only: [:index, :show, :new, :create,:edit, :update]
   end
 
   resources :bookings, only: [:index, :show]
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
         patch :refuse
       end
     end
+
+    resources :islands
   end
 
 end

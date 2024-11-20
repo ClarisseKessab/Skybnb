@@ -1,0 +1,29 @@
+<h1>My islands</h1>
+
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  <% @islands.each do |island| %>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <% if island.photos.attached? %>
+            <% island.photos.each do |photo| %>
+              <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+            <% end %>
+          <% else %>
+            <p>Aucune photo disponible pour cet article.</p>
+          <% end %>
+          <h5 class="card-title"><%= island.name %></h5>
+          <p class="card-text">
+            <strong>Price per night:</strong> $<%= island.price_per_night %><br>
+            <strong>Capacity:</strong> <%= island.capacity %> guests<br>
+            <strong>Location:</strong> <%= island.location %>
+          </p>
+        </div>
+        <div class="card-footer">
+          <%= link_to "Edit", edit_owner_island_path(island), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

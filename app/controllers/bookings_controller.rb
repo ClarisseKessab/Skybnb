@@ -2,20 +2,27 @@ class BookingsController < ApplicationController
   before_action :set_guest, only: %i[new create]
 
   def index
-    @bookings = Booking.all
+    @bookings = Booking.where(user: current_user)
   end
 
   def new
     @booking = Booking.new
     @guest = current_user
+    @island = Island.find(params[:island_id])
   end
 
   def create
     @booking = Booking.new(params_booking)
     @booking.user = @guest
-    @booking.save
+    @island = Island.find(params[:island_id])
+    @booking.island = @island
+    @booking.status = "pending"
+    if @booking.save
+      redirect_to bookings_path
+    else
+      render :new, status: :unprocessable_entity
+    end
 
-    redirect_to booking_path(@booking)
   end
 
   def show

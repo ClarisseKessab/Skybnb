@@ -1,4 +1,19 @@
 class IslandsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
+
+  def index
+    @islands = Island.all
+
+    @islands = @islands.where("capacity >= ?", params[:capacity]) if params[:capacity].present?
+    @islands = @islands.where(location: params[:location]) if params[:location].present?
+    @islands = @islands.where("price <= ?", params[:price]) if params[:price].present?
+
+  end
+
+  def show
+    @island = Island.find(params[:id])
+  end
+
   def new
     @island = Island.new
   end
@@ -11,20 +26,6 @@ class IslandsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def index
-    @islands = Island.all
-
-    @islands = @islands.where("capacity >= ?", params[:capacity]) if params[:capacity].present?
-    @islands = @islands.where(location: params[:location]) if params[:location].present?
-    @islands = @islands.where("price <= ?", params[:price]) if params[:price].present?
-
-    render :index
-  end
-
-  def show
-    @island = Island.find(params[:id])
   end
 
   private
