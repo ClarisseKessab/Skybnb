@@ -1,7 +1,12 @@
-<ul>
+<h1>My bookings</h1>
+<hr>
+
   <% @bookings.each do |booking| %>
+  <h3><%= booking.island.name %></h3>
+  <h5>Booking details</h5>
+  <ul>
     <li class="list-group-item"><p>Date d'arrivée :<%= booking.start_date %></p><p>Date de départ :<%= booking.end_date %></p></li>
-    <li class="list-group-item"><p>Id de l'île: <%= booking.island %></p></li>
+    <li class="list-group-item"><p>île: <%= booking.island.name %></p></li>
     <li class="list-group-item"><p>Status: <%= booking.status %></p></li>
+  </ul>
   <% end %>
-</ul>
