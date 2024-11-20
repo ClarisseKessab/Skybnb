@@ -1,5 +1,4 @@
-<h1 class="mb-4">Browse Islands</h1>
-
+<h1>Browse Islands</h1>
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   <% @islands.each do |island| %>
     <div class="col">
@@ -35,6 +34,7 @@
         </div>
         <div class="card-footer">
           <%= link_to "View Details", island_path(island), class: "btn btn-primary" %>
+          <%= link_to "Book", new_island_booking_path(island) %>
         </div>
       </div>
     </div>

@@ -1,16 +1,57 @@
-.navbar-lewagon {
+.navbar1-container{
+  padding-inline: 70px;
   justify-content: space-between;
-  background: white;
+  align-items: center;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 105px;
+  width: 100%;
+  margin-bottom: 40px;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-simple-container{
+  padding-inline: 70px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 105px;
+  width: 100%;
+  margin-bottom: 40px;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.reservation_navbar{
+  display: flex;
+  align-items: center;
+  padding-inline: 20px;
+  padding-block: 10px;
+  gap:50px;
+  border-radius: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-skybnb{
-  
+.label-navbar{
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.question-navbar{
+  margin:0;
+}
+
+.icon_navbar{
+  color:#FFFFFF;
+  background-color: #F66576;
+  padding:10px;
+  padding-inline:15px;
+  border-radius: 50px;
+}
+.profile_navbar{
+  color:#FFFFFF;
+  background-color: #000000;
+  padding:10px;
+  padding-inline:15px;
+  border-radius: 50px;
+
 }
