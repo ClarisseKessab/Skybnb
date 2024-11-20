@@ -1,1 +1,33 @@
-<h1><%= @island.name %></h1>
+<div class="card-trip">
+<div id="photoCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 500px; margin: auto;">
+  <div class="carousel-inner">
+    <% if @island.photos.attached? %>
+      <% @island.photos.each_with_index do |photo, index| %>
+        <div class="carousel-item <%= 'active' if index.zero? %>">
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No picture available for this island.</p>
+    <% end %>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div class="card-trip-infos" style="max-width: 500px; margin: auto;">
+    <div>
+      <h2><%= @island.name %></h2>
+      <p><i><%= @island.description %></i></p>
+      <p><strong>Capacity:</strong> <%= @island.capacity %> guests</p>
+      <p><strong>GPS Longitute:</strong> <%= @island.gps_longitude %></p>
+      <p><strong>GPS Latitude:</strong> <%= @island.gps_latitude %></p>
+    </div>
+    <h2 class="card-trip-pricing"><%= @island.price_per_night %> $</h2>
+  </div>
+</div>
