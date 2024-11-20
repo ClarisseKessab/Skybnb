@@ -6,7 +6,7 @@
         <div class="card-body">
           <% if island.photos.attached? %>
             <% island.photos.each do |photo| %>
-              <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+              <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "img-fluid" %>
             <% end %>
           <% else %>
             <p>No picture available for this island.</p>
