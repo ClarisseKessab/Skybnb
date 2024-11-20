@@ -215,36 +215,40 @@ file6 = URI.parse("https://i.postimg.cc/D08DJD32/DALL-E-2024-11-18-11-35-09-A-li
 islands[5].photos.attach(io: file6, filename: "pirate_island.png", content_type: "image/png")
 islands[5].save
 
-file7 = URI.parse("https://i.postimg.cc/T24BMRnh/DALL-E-2024-11-18-11-35-13-A-tranquil-floating-Zen-island-featuring-a-beautifully-landscaped-Japan.png").open
-islands[6].photos.attach(io: file7, filename: "zen_island.png", content_type: "image/png")
-islands[6].save
-
-file8 = URI.parse("https://i.postimg.cc/6qgPd0BC/DALL-E-2024-11-18-11-35-16-A-whimsical-floating-desert-island-with-golden-sand-dunes-a-shimmering.png").open
-islands[7].photos.attach(io: file8, filename: "desert_island.png", content_type: "image/png")
-islands[7].save
-
-file9 = URI.parse("https://i.postimg.cc/sgSk4tQx/DALL-E-2024-11-18-11-35-18-A-magical-floating-ice-and-snow-island-featuring-glowing-igloos-radiati.png").open
-islands[8].photos.attach(io: file9, filename: "ice_island.png", content_type: "image/png")
-islands[8].save
-
-file10 = URI.parse("https://i.postimg.cc/kXRz7kys/DALL-E-2024-11-18-11-35-21-A-fantastical-floating-prehistoric-jungle-island-covered-in-dense-tropi.png").open
-islands[9].photos.attach(io: file10, filename: "prehistoric_island.png", content_type: "image/png")
+file7 = URI.parse("https://i.postimg.cc/bJ14RXjx/DALL-E-2024-11-20-15-16-29-A-majestic-floating-ice-kingdom-suspended-in-the-air-featuring-glowing.png").open
+islands[9].photos.attach(io: file7, filename: "ice_island.png", content_type: "image/png")
+file7_BIS = URI.parse("https://i.postimg.cc/MGMCvMPr/DALL-E-2024-11-20-15-16-26-A-whimsical-floating-winter-paradise-featuring-glowing-magical-igloos-s.png").open
+islands[9].photos.attach(io: file7_BIS, filename: "ice_islandbBIS.png", content_type: "image/png")
+file7_BISBIS = URI.parse("https://i.postimg.cc/RZDrSQRH/DALL-E-2024-11-20-15-16-20-A-whimsical-floating-winter-themed-island-featuring-glowing-igloos-made.png").open
+islands[9].photos.attach(io: file7_BISBIS, filename: "ice_islandBISBIS.png", content_type: "image/png")
 islands[9].save
 
-file11 = URI.parse("https://i.postimg.cc/pLDSFz4n/DALL-E-2024-11-18-11-35-25-A-magical-floating-underwater-themed-island-encased-in-a-giant-transpar.png").open
-islands[10].photos.attach(io: file11, filename: "magical_island.png", content_type: "image/png")
+file8 = URI.parse("https://i.postimg.cc/T24BMRnh/DALL-E-2024-11-18-11-35-13-A-tranquil-floating-Zen-island-featuring-a-beautifully-landscaped-Japan.png").open
+islands[6].photos.attach(io: file8, filename: "zen_island.png", content_type: "image/png")
+islands[6].save
+
+file9 = URI.parse("https://i.postimg.cc/6qgPd0BC/DALL-E-2024-11-18-11-35-16-A-whimsical-floating-desert-island-with-golden-sand-dunes-a-shimmering.png").open
+islands[8].photos.attach(io: file9, filename: "desert_island.png", content_type: "image/png")
+islands[8].save
+
+file10 = URI.parse("https://i.postimg.cc/RZgH1nWM/DALL-E-2024-11-20-16-09-43-A-whimsical-floating-island-made-entirely-of-sw-eets-and-candies-The-la.png").open
+islands[7].photos.attach(io: file10, filename: "candy_island.png", content_type: "image/png")
+islands[7].save
+
+file11 = URI.parse("https://i.postimg.cc/kXRz7kys/DALL-E-2024-11-18-11-35-21-A-fantastical-floating-prehistoric-jungle-island-covered-in-dense-tropi.png").open
+islands[10].photos.attach(io: file11, filename: "prehistoric_island.png", content_type: "image/png")
 islands[10].save
 
-file12 = URI.parse("https://i.postimg.cc/N0DPNYgs/DALL-E-2024-11-18-11-35-28-A-vibrant-floating-carnival-island-featuring-colorful-carousels-roller.png").open
-islands[11].photos.attach(io: file12, filename: "carnival_island.png", content_type: "image/png")
+file12 = URI.parse("https://i.postimg.cc/pLDSFz4n/DALL-E-2024-11-18-11-35-25-A-magical-floating-underwater-themed-island-encased-in-a-giant-transpar.png").open
+islands[11].photos.attach(io: file12, filename: "underwater_island.png", content_type: "image/png")
 islands[11].save
 
-file13 = URI.parse("https://i.postimg.cc/dQhwTNBk/DALL-E-2024-11-18-11-35-33-A-mystical-floating-island-with-ancient-ruins-including-large-crumblin.png").open
-islands[12].photos.attach(io: file13, filename: "mystical_island.png", content_type: "image/png")
+file13 = URI.parse("https://i.postimg.cc/N0DPNYgs/DALL-E-2024-11-18-11-35-28-A-vibrant-floating-carnival-island-featuring-colorful-carousels-roller.png").open
+islands[12].photos.attach(io: file13, filename: "carnival_island.png", content_type: "image/png")
 islands[12].save
 
-file14 = URI.parse("https://i.postimg.cc/44jZvvL8/DALL-E-2024-11-18-11-35-37-A-magical-floating-island-inspired-by-a-famous-wizarding-school-featur.png").open
-islands[13].photos.attach(io: file14, filename: "wizarding_island.png", content_type: "image/png")
+file14 = URI.parse("https://i.postimg.cc/dQhwTNBk/DALL-E-2024-11-18-11-35-33-A-mystical-floating-island-with-ancient-ruins-including-large-crumblin.png").open
+islands[13].photos.attach(io: file14, filename: "mystical_island.png", content_type: "image/png")
 islands[13].save
 
 file15 = URI.parse("https://i.postimg.cc/bJvVWMJQ/DALL-E-2024-11-18-11-35-41-A-floating-science-fiction-island-inspired-by-a-space-fantasy-featurin.png").open

@@ -25,7 +25,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :islands
+    resources :islands, only: [:index, :edit, :update] do
+      member do
+        delete :delete_photo
+      end
+    end
   end
-
 end
