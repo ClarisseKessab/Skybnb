@@ -15,10 +15,10 @@ Rails.application.routes.draw do
     resources :bookings, only: [:index, :show, :new, :create,:edit, :update]
   end
 
-  # resources :bookings, only: [:index, :show]
+  resources :bookings, only: [:index, :show]
 
   namespace :owner do
-    resources :bookings, only:[:index, :show] do
+    resources :bookings, only:[] do
       member do
         patch :accept
         patch :refuse
