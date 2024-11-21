@@ -10,28 +10,23 @@ export default class extends Controller {
       mode: "range",
       minDate: "today",
       dateFormat: "Y-m-d",
-      onChange: this.updateHiddenFields.bind(this)
+      onChange: (selectedDates) => {
+        this.updateHiddenFields(selectedDates);
+      }
     });
   }
 
   updateHiddenFields(selectedDates) {
-    const [startDate, endDate] = selectedDates;
+    const startDate = selectedDates[0];
+    const endDate = selectedDates[1];
 
     if (startDate) {
-      this.startDateTarget.value = this.formatDate(startDate);
+      this.startDateTarget.value = this.flatpickr.formatDate(startDate, "Y-m-d");
     }
     if (endDate) {
-      this.endDateTarget.value = this.formatDate(endDate);
+      this.endDateTarget.value = this.flatpickr.formatDate(endDate, "Y-m-d");
     }
   }
-
-  formatDate(date) {
-    const year = date.getFullYear();
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const day = ("0" + date.getDate()).slice(-2);
-    return `${year}-${month}-${day}`;
-  }
-
 
   disconnect() {
     if (this.flatpickr) {
