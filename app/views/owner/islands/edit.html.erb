@@ -1,5 +1,10 @@
 <div class="container mt-5">
   <h1 class="text-center mb-4">Edit my Island</h1>
+   <%= link_to "Delete",
+            owner_delete_island_path(),
+            class: "btn btn-danger",
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete this island?"}
+  %>
   <%= simple_form_for [:owner, @island] do |f| %>
     <%= f.input :name, placeholder: "Enter the island name"%>
     <%= f.input :description, placeholder: "Describe the island" %>

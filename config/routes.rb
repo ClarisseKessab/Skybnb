@@ -30,5 +30,7 @@ Rails.application.routes.draw do
         delete :delete_photo
       end
     end
+
+    delete 'islands/:id', to: 'islands#destroy', as: 'delete_island'
   end
 end
