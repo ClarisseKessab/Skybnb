@@ -5,16 +5,21 @@
 }
 
 .cards-island {
+
   display: flex;
   gap: 20px;
   transition: transform 0.3s ease;
+  overflow-x: auto;
+  padding-block:30px;
 }
 
 .card-island {
+  position: relative;
   flex: 0 0 auto;
   width: 300px; /* Ajustez selon vos besoins */
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index:-1;
 }
 
 #photoCarousel {
@@ -28,23 +33,23 @@
   object-fit: cover;
 }
 
-.slide-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.7);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  cursor: pointer;
+.card-island-texts{
+  padding-block:15px;
+  padding-inline: 20px;
 }
 
-.slide-left {
-  left: 10px;
+.tag-status p{
+  margin:0;
 }
 
-.slide-right {
-  right: 10px;
+.tag-status{
+  color:white;
+  position:absolute;
+  background-color:rgba(156, 4, 4, 0.685);
+  padding-block:5px;
+  padding-inline: 20px;
+  border-radius:10px;
+  top:40px;
+  left: 170px;
+
 }
