@@ -1,5 +1,5 @@
 class Owner::IslandsController < ApplicationController
-  before_action :set_island, only: %i[edit update delete_photo]
+  before_action :set_island, only: %i[edit update delete_photo destroy]
 
   def index
     @islands = Island.where(user: current_user)
@@ -7,15 +7,6 @@ class Owner::IslandsController < ApplicationController
 
   def edit
   end
-
-  # def update
-  #   if @island.update(island_params)
-  #     redirect_to owner_islands_path()
-  #   else
-  #     render :edit, status: :unprocessable_entity
-  #   end
-  # end
-
 
   def update
     # Supprimez les paramètres de photos vides
@@ -37,6 +28,15 @@ class Owner::IslandsController < ApplicationController
     photo = @island.photos.find(params[:photo_id])
     photo.purge
     redirect_to edit_owner_island_path(@island), notice: "Photo deleted with success!"
+  end
+
+  def destroy
+    if @island.bookings.where.not(status: "cancelled").any?
+      redirect_to owner_islands_path, alert: "Unable to delete this island as it has associated bookings."
+    else
+      @island.destroy
+      redirect_to owner_islands_path, notice: "The island has been successfully deleted."
+    end
   end
 
   private

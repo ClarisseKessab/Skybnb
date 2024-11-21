@@ -37,6 +37,11 @@
         </div>
         <div class="card-footer">
           <%= link_to "Edit", edit_owner_island_path(island), class: "btn btn-primary" %>
+          <%= link_to "Delete",
+            owner_delete_island_path(island),
+            class: "btn btn-danger",
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete this island?"}
+          %>
         </div>
       </div>
     </div>
