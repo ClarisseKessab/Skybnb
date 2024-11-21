@@ -18,6 +18,7 @@ class BookingsController < ApplicationController
     @island = Island.find(params[:island_id])
     @booking.island = @island
     @booking.status = "pending"
+
     if @booking.save
       redirect_to dashboard_path
     else
@@ -55,6 +56,6 @@ class BookingsController < ApplicationController
   end
 
   def params_booking
-    params.require(:booking).permit(:start_date, :end_date, :status, :island_id, :user_id)
+    params.require(:booking).permit(:start_date, :end_date, :status, :island_id, :user_id, :paid_price, :travellers)
   end
 end
