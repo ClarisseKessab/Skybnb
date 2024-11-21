@@ -1,0 +1,47 @@
+<h1>Dashboard</h1>
+
+<% if !@guest_bookings %>
+  <h2>Bookings as a guest</h2>
+  <% @guest_bookings.each do |booking| %>
+  <h3><%= booking.island.name %></h3>
+  <h5>Booking details</h5>
+  <ul>
+    <li class="list-group-item"><p>Date d'arrivée :<%= booking.start_date %></p><p>Date de départ :<%= booking.end_date %></p></li>
+    <li class="list-group-item"><p>île: <%= booking.island.name %></p></li>
+    <li class="list-group-item"><p>Status: <%= booking.status %></p></li>
+  </ul>
+  <% end %>
+  <% else %>
+  <p>No booking yet - <%= link_to "Browse islands", islands_path %></p>
+<% end %>
+
+<% if !@owner_bookings %>
+  <h2>Bookings as an owner</h2>
+  <% @owner_bookings.each do |booking| %>
+  <h3><%= booking.island.name %></h3>
+  <h5>Booking details</h5>
+  <ul>
+    <li class="list-group-item"><p>Date d'arrivée :<%= booking.start_date %></p><p>Date de départ :<%= booking.end_date %></p></li>
+    <li class="list-group-item"><p>île: <%= booking.island.name %></p></li>
+    <li class="list-group-item"><p>Status: <%= booking.status %></p></li>
+    <% if booking.status == "pending" %>
+    <li class="list-group-item">
+      <%= link_to "accept", accept_owner_booking_path(booking), data: {turbo_method: :patch} %>
+        -
+      <%= link_to "refuse", refuse_owner_booking_path(booking), data: {turbo_method: :patch} %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+  <% else %>
+  <p>No booking request yet</p>
+<% end %>
+
+<% if !@islands %>
+  <h2>My islands</h2>
+  <% @islands.each do |island| %>
+    <h3><%= island.name %></h3>
+  <% end %>
+<% else %>
+  <p>No island yet - <%= link_to "Create my island", new_island_path %></p>
+<% end %>
