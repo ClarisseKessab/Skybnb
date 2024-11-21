@@ -18,7 +18,7 @@ class Owner::IslandsController < ApplicationController
     end
 
     if @island.update(island_params.except(:photos))
-      redirect_to owner_island_path(@island), notice: 'The island was successfully updated!'
+      redirect_to dashboard_path, notice: 'The island was successfully updated!'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -32,10 +32,10 @@ class Owner::IslandsController < ApplicationController
 
   def destroy
     if @island.bookings.where.not(status: "cancelled").any?
-      redirect_to owner_islands_path, alert: "Unable to delete this island as it has associated bookings."
+      redirect_to dashboard_path, alert: "Unable to delete this island as it has associated bookings."
     else
       @island.destroy
-      redirect_to owner_islands_path, notice: "The island has been successfully deleted."
+      redirect_to dashboard_path, notice: "The island has been successfully deleted."
     end
   end
 
