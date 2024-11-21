@@ -7,7 +7,9 @@
     },
     placeholder: "Select date range",
     class: "form-control" %>
-
+  <%= f.input :travellers, input_html: { value: 2 }  %>
+  <%= f.input :paid_price, readonly: true,
+    input_html: { data: { datepicker_target: "paidPrice" } } %>
   <%= f.input :start_date, as: :hidden,
     input_html: { data: { datepicker_target: "startDate" } } %>
   <%= f.input :end_date, as: :hidden,

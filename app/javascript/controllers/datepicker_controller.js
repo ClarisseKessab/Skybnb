@@ -3,7 +3,7 @@ import flatpickr from "flatpickr";
 
 // Connects to data-controller="datepicker"
 export default class extends Controller {
-  static targets = ["dateRange", "startDate", "endDate", "nights", "pricePerNight", "totalPrice"]
+  static targets = ["dateRange", "startDate", "endDate", "nights", "pricePerNight", "totalPrice", "paidPrice"]
 
   connect() {
     this.flatpickr = flatpickr(this.dateRangeTarget, {
@@ -30,6 +30,7 @@ export default class extends Controller {
       const nights = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
       this.nightsTarget.textContent = nights;
       this.totalPriceTarget.textContent = nights * this.pricePerNightTarget.innerText;
+      this.paidPriceTarget.value = nights * this.pricePerNightTarget.innerText;
     } else {
       // Si endDate n'est pas encore sélectionnée, on remet le nombre de nuits à 0
       this.nightsTarget.textContent = "0";
