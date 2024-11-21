@@ -38,7 +38,7 @@
     </div>
 
     <!-- Formulaire de réservation à droite -->
-    <div class="col-md-6">
+    <div class="col-md-4" >
       <h1>New booking</h1>
       <div data-controller="datepicker">
         <%= simple_form_for [@island, @booking] do |f| %>
@@ -49,15 +49,14 @@
 
           <%= f.input :start_date, as: :hidden, input_html: { data: { datepicker_target: "startDate" } } %>
           <%= f.input :end_date, as: :hidden, input_html: { data: { datepicker_target: "endDate" } } %>
-
+        <div class="nights">
           <p>Nights: <span data-datepicker-target="nights">0</span></p>
           <p>Price per night: $<span data-datepicker-target="pricePerNight"><%= @island.price_per_night %></span></p>
           <p>Total: $<span data-datepicker-target="totalPrice">0</span></p>
-
+        </div>
           <%= f.submit class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
