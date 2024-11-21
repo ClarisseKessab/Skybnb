@@ -3,19 +3,19 @@ class Owner::BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.status = "confirmed"
     if @booking.save
-      redirect_to bookings_path
+      redirect_to dashboard_path
     else
-      redirect_to bookings_path
+      redirect_to dashboard_path
     end
   end
 
   def refuse
     @booking = Booking.find(params[:id])
-    @booking.status = "refused"
+    @booking.status = "cancelled"
     if @booking.save
-      redirect_to bookings_path
+      redirect_to dashboard_path
     else
-      redirect_to bookings_path
+      redirect_to dashboard_path
     end
   end
 end
