@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
     @booking.island = @island
     @booking.status = "pending"
     if @booking.save
-      redirect_to bookings_path
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -45,7 +45,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.destroy
 
-    redirect_to bookings_path, status: :see_other
+    redirect_to dashboard_path, status: :see_other
   end
 
   private
