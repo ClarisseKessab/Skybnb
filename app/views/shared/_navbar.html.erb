@@ -12,12 +12,15 @@
         </div>
         <div>
           <p class="label-navbar">Arrival and departure dates</p>
-          <%= text_field_tag :date_range, nil,
-          data: { datepicker_navbar_target: "dateRange" },
-          placeholder: "When?",
-          class: "question-navbar" %>
-          <%= f.input :arrival_date, as: :hidden, input_html: { data: { datepicker_navbar_target: "startDate" } } %>
-          <%= f.input :departure_date, as: :hidden, input_html: { data: { datepicker_navbar_target: "endDate" } } %>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <i class="fa-solid fa-calendar"></i>
+            </span>
+            <%= text_field_tag :date_range, nil,
+            data: { datepicker_navbar_target: "dateRange" },
+            placeholder: "When?",
+            class: "question-navbar" %>
+          </div>
         </div>
         <div>
           <p class="label-navbar">Travellers</p>
@@ -39,6 +42,8 @@
           <%= f.button :submit, "" %>
         </div>
       </div>
+    <%= f.input :arrival_date, as: :hidden, input_html: { data: { datepicker_navbar_target: "startDate" } } %>
+    <%= f.input :departure_date, as: :hidden, input_html: { data: { datepicker_navbar_target: "endDate" } } %>
    <% end %>
     <div class="profile_navbar">
       <%= link_to dashboard_path do %>

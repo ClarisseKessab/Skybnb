@@ -7,7 +7,8 @@
         <h2><%= @island.name %></h2>
 
         <!-- Image carousel -->
-        <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: left;">
+        <%# <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel"> %>
           <div class="carousel-inner">
             <% if @island.photos.attached? %>
               <% @island.photos.each_with_index do |photo, index| %>
@@ -19,21 +20,23 @@
               <p>No picture available for this island.</p>
             <% end %>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+          <% if @island.photos.attached? &&  @island.photos.count > 1 %>
+            <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          <% end %>
         </div>
 
         <!-- Island info -->
-        <p><strong><%= @island.description %></strong></p>
-        <p>Travellers max: <%= @island.capacity %></p>
+        <p><i><%= @island.description %></i></p>
+        <p><strong>Capacity:</strong> <%= @island.capacity %> guests</p>
         <div class="roundedImage">
-          <p>Host: <%= @island.user.first_name %></p>
+          <p><strong>Host:</strong> <%= @island.user.first_name %></p>
         </div>
       </div>
     </div>
@@ -60,9 +63,12 @@
             </span>
             <%= text_field_tag :date_range, nil,
               data: { datepicker_target: "dateRange" },
-              placeholder: "Select date range",
-              class: "form-control" %>
+              placeholder: "When?",
+              class: "form-control",
+              input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
           </div>
+
+
 
           <!-- Travellers Input -->
           <div class="input-group mb-3">
@@ -74,7 +80,8 @@
                         label: false,
                         input_html: {
                           value: 2,
-                          class: 'form-control'
+                          class: 'form-control',
+                          input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' }
                         } %>
           </div>
 
@@ -88,9 +95,9 @@
 
           <!-- Price Calculations -->
           <div class="nights">
-            <p>Nights: <span data-datepicker-target="nights">0</span></p>
-            <p>Price per night: $<span data-datepicker-target="pricePerNight"><%= @island.price_per_night %></span></p>
-            <p>Total: $<span data-datepicker-target="totalPrice">0</span></p>
+            <p><strong>Nights:</strong> <span data-datepicker-target="nights">0</span></p>
+            <p><strong>Price per night:</strong> $<span data-datepicker-target="pricePerNight"><%= @island.price_per_night %></span></p>
+            <p><strong>Total:</strong> $<span data-datepicker-target="totalPrice">0</span></p>
           </div>
 
           <!-- Submit Button -->
