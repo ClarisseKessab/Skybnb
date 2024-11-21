@@ -33,6 +33,7 @@ class Booking < ApplicationRecord
                                   .where('start_date < ? AND end_date > ?', end_date, start_date)
     if overlapping_bookings.exists?
       errors.add(:base, 'The selected dates are not available for this island.')
+
     end
   end
 
