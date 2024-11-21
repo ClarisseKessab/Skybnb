@@ -35,160 +35,159 @@ user10 = User.create!(email: 'user10@example.com', password: 'password123', firs
 users = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10];
 puts "Users seeded!"
 
-
-# Seed des îles flottantes
 islands = Island.create!([
   {
-    name: "Île jungle sauvage",
-    description: "Une île luxuriante peuplée de singes amicaux et d'une cascade portable.",
-    location: "Amazonie flottante",
-    price_per_night: 200.00,
-    capacity: 10,
-    gps_longitude: "-63.1316", # Coordonnée GPS choisie
-    gps_latitude: "-3.4653",
-    user: user2 # Remplacer user par users.sample
+  name: "Wild Jungle Isle",
+  description: "A lush island populated with friendly monkeys and a portable waterfall.",
+  location: "Floating Amazonia",
+  price_per_night: 200.00,
+  capacity: 10,
+  gps_longitude: "-63.1316",
+  gps_latitude: "-3.4653",
+  user: user2
   },
   {
-    name: "Île spa paradisiaque",
-    description: "Jacuzzis, bains thermaux et massages en plein ciel.",
-    location: "Ciel des Maldives",
-    price_per_night: 450.00,
-    capacity: 4,
-    gps_longitude: "73.4249", # Coordonnée GPS choisie
-    gps_latitude: "3.2028",
-    user: user3 # Remplacer user par users.sample
+  name: "Heavenly Spa Island",
+  description: "Sky-high jacuzzis, thermal baths, and massages.",
+  location: "Maldives Sky",
+  price_per_night: 450.00,
+  capacity: 4,
+  gps_longitude: "73.4249",
+  gps_latitude: "3.2028",
+  user: user3
   },
   {
-    name: "Île volcanique",
-    description: "Une île avec un volcan miniature actif pour un barbecue géant.",
-    location: "Sous les cieux de l'Islande",
-    price_per_night: 350.00,
-    capacity: 8,
-    gps_longitude: "-16.5225", # Coordonnée GPS choisie
-    gps_latitude: "64.9630",
-    user: user4 # Remplacer user par users.sample
+  name: "Volcanic Island",
+  description: "An island with a miniature active volcano for giant barbecues.",
+  location: "Skies of Iceland",
+  price_per_night: 350.00,
+  capacity: 8,
+  gps_longitude: "-16.5225",
+  gps_latitude: "64.9630",
+  user: user4
   },
   {
-    name: "Île disco",
-    description: "Sol lumineux, musique funky et DJ inclus.",
-    location: "La fête dans le ciel",
-    price_per_night: 150.00,
-    capacity: 20,
-    gps_longitude: "74.0060", # Coordonnée GPS choisie
-    gps_latitude: "40.7128",
-    user: user5 # Remplacer user par users.sample
+  name: "Disco Island",
+  description: "Luminous floor, funky music, and DJ included.",
+  location: "Party in the Sky",
+  price_per_night: 150.00,
+  capacity: 20,
+  gps_longitude: "74.0060",
+  gps_latitude: "40.7128",
+  user: user5
   },
   {
-    name: "Île médiévale",
-    description: "Un petit château, des chevaliers et un dragon de compagnie.",
-    location: "Château flottant",
-    price_per_night: 300.00,
-    capacity: 6,
-    gps_longitude: "4.8954", # Coordonnée GPS choisie
-    gps_latitude: "52.3676",
-    user: user6 # Remplacer user par users.sample
+  name: "Medieval Isle",
+  description: "A small castle, knights, and a pet dragon.",
+  location: "Floating Castle",
+  price_per_night: 300.00,
+  capacity: 6,
+  gps_longitude: "4.8954",
+  gps_latitude: "52.3676",
+  user: user6
   },
   {
-    name: "Île pirate",
-    description: "Avec un coffre au trésor et des perroquets farceurs.",
-    location: "Caribbean Sky",
-    price_per_night: 250.00,
-    capacity: 12,
-    gps_longitude: "-81.2546", # Coordonnée GPS choisie
-    gps_latitude: "18.2208",
-    user: user7 # Remplacer user par users.sample
+  name: "Pirate Island",
+  description: "Complete with a treasure chest and mischievous parrots.",
+  location: "Caribbean Sky",
+  price_per_night: 250.00,
+  capacity: 12,
+  gps_longitude: "-81.2546",
+  gps_latitude: "18.2208",
+  user: user7
   },
   {
-    name: "Île zen",
-    description: "Jardin japonais flottant avec koi volants.",
-    location: "Sérénité céleste",
-    price_per_night: 400.00,
-    capacity: 4,
-    gps_longitude: "139.6917", # Coordonnée GPS choisie
-    gps_latitude: "35.6895",
-    user: user8 # Remplacer user par users.sample
+  name: "Zen Island",
+  description: "Floating Japanese garden with flying koi fish.",
+  location: "Celestial Serenity",
+  price_per_night: 400.00,
+  capacity: 4,
+  gps_longitude: "139.6917",
+  gps_latitude: "35.6895",
+  user: user8
   },
   {
-    name: "Île des bonbons",
-    description: "Entièrement faite de sucreries et friandises.",
-    location: "Sugar Island",
-    price_per_night: 120.00,
-    capacity: 15,
-    gps_longitude: "-0.1276", # Coordonnée GPS choisie
-    gps_latitude: "51.5074",
-    user: user9 # Remplacer user par users.sample
+  name: "Candy Island",
+  description: "Entirely made of sweets and treats.",
+  location: "Sugar Island",
+  price_per_night: 120.00,
+  capacity: 15,
+  gps_longitude: "-0.1276",
+  gps_latitude: "51.5074",
+  user: user9
   },
   {
-    name: "Île du désert",
-    description: "Avec une oasis et des chameaux volants.",
-    location: "Dune flottante",
-    price_per_night: 180.00,
-    capacity: 10,
-    gps_longitude: "55.2708", # Coordonnée GPS choisie
-    gps_latitude: "25.2048",
-    user: user10 # Remplacer user par users.sample
+  name: "Desert Island",
+  description: "Complete with an oasis and flying camels.",
+  location: "Floating Dune",
+  price_per_night: 180.00,
+  capacity: 10,
+  gps_longitude: "55.2708",
+  gps_latitude: "25.2048",
+  user: user10
   },
   {
-    name: "Île glace et neige",
-    description: "Igloos lumineux et toboggans de glace suspendus.",
-    location: "Frozen Sky",
-    price_per_night: 500.00,
-    capacity: 5,
-    gps_longitude: "-80.2207", # Coordonnée GPS choisie
-    gps_latitude: "25.7617",
-    user: user1 # Remplacer user par users.sample
+  name: "Ice and Snow Island",
+  description: "Luminous igloos and suspended ice slides.",
+  location: "Frozen Sky",
+  price_per_night: 500.00,
+  capacity: 5,
+  gps_longitude: "-80.2207",
+  gps_latitude: "25.7617",
+  user: user1
   },
   {
-    name: "Île jungle préhistorique",
-    description: "Avec des dinosaures miniatures apprivoisés.",
-    location: "Mesozoic Isle",
-    price_per_night: 250.00,
-    capacity: 10,
-    gps_longitude: "19.4326", # Coordonnée GPS choisie
-    gps_latitude: "99.1332",
-    user: user2 # Remplacer user par users.sample
+  name: "Prehistoric Jungle Island",
+  description: "Featuring tamed miniature dinosaurs.",
+  location: "Mesozoic Isle",
+  price_per_night: 250.00,
+  capacity: 10,
+  gps_longitude: "19.4326",
+  gps_latitude: "99.1332",
+  user: user2
   },
   {
-    name: "Île sous-marine flottante",
-    description: "Avec une bulle transparente pour observer les poissons en volant.",
-    location: "Atlantis flottant",
-    price_per_night: 600.00,
-    capacity: 3,
-    gps_longitude: "-81.1631", # Coordonnée GPS choisie
-    gps_latitude: "25.7743",
-    user: user3 # Remplacer user par users.sample
+  name: "Floating Underwater Island",
+  description: "With a transparent bubble to observe fish while flying.",
+  location: "Floating Atlantis",
+  price_per_night: 600.00,
+  capacity: 3,
+  gps_longitude: "-81.1631",
+  gps_latitude: "25.7743",
+  user: user3
   },
   {
-    name: "Île carnaval",
-    description: "Manèges, stand de pop-corn et jeux à gogo.",
-    location: "Carnival in the Sky",
-    price_per_night: 180.00,
-    capacity: 15,
-    gps_longitude: "2.3522", # Coordonnée GPS choisie
-    gps_latitude: "48.8566",
-    user: user4 # Remplacer user par users.sample
+  name: "Carnival Island",
+  description: "Rides, popcorn stands, and games galore.",
+  location: "Carnival in the Sky",
+  price_per_night: 180.00,
+  capacity: 15,
+  gps_longitude: "2.3522",
+  gps_latitude: "48.8566",
+  user: user4
   },
   {
-    name: "Île céleste mystique",
-    description: "Ruines antiques flottantes et un ciel étoilé permanent.",
-    location: "Mystic Cloud",
-    price_per_night: 400.00,
-    capacity: 6,
-    gps_longitude: "25.276987", # Coordonnée GPS choisie
-    gps_latitude: "55.296249",
-    user: user5 # Remplacer user par users.sample
+  name: "Mystical Celestial Island",
+  description: "Floating ancient ruins and a permanent starry sky.",
+  location: "Mystic Cloud",
+  price_per_night: 400.00,
+  capacity: 6,
+  gps_longitude: "25.276987",
+  gps_latitude: "55.296249",
+  user: user5
   },
   {
-    name: "Île thématique géante",
-    description: "Adaptée à vos envies, comme une île Harry Potter ou Star Wars.",
-    location: "Fantasy Sky",
-    price_per_night: 550.00,
-    capacity: 20,
-    gps_longitude: "3.1390", # Coordonnée GPS choisie
-    gps_latitude: "101.6869",
-    user: user6 # Remplacer user par users.sample
+  name: "Giant Theme Island",
+  description: "Customizable to your desires, like a Harry Potter or Star Wars island.",
+  location: "Fantasy Sky",
+  price_per_night: 550.00,
+  capacity: 20,
+  gps_longitude: "3.1390",
+  gps_latitude: "101.6869",
+  user: user6
   }
-])
+  ])
+
 puts "Islands seeded!"
 
 file1 = URI.parse("https://i.postimg.cc/63HgQKSj/DALL-E-2024-11-18-11-34-41-A-lush-floating-jungle-island-with-vibrant-green-trees-a-cascading-wat.png").open
