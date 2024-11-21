@@ -34,9 +34,15 @@ class IslandsController < ApplicationController
       @islands = @islands.where("location ILIKE ?", "%#{@search.location}%")
     end
 
-    # Filtrer par date d'arrivée et de départ
+    # Filtrer par dates d'arrivée et de départ, en excluant les îles déjà réservées
     if @search.arrival_date.present? && @search.departure_date.present?
-      @islands = @islands.where("availability_start <= ? AND availability_end >= ?", @search.arrival_date, @search.departure_date)
+      # Convertir les dates si elles sont des chaînes de caractères
+      @search.arrival_date = Date.parse(@search.arrival_date) if @search.arrival_date.is_a?(String)
+      @search.departure_date = Date.parse(@search.departure_date) if @search.departure_date.is_a?(String)
+
+      @islands = @islands.joins(:bookings)
+                      .where.not(bookings: { status: 'cancelled' })
+                      .where('bookings.start_date < ? AND bookings.end_date > ?', @search.departure_date, @search.arrival_date)
     end
 
     # Gestion du nombre de voyageurs

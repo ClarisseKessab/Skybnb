@@ -5,21 +5,33 @@
     <% end %>
   </div>
   <%= simple_form_for @search, url:  search_islands_path, method: :get do |f| %>
-      <div class="reservation_navbar">
+      <div class="reservation_navbar" data-controller="datepicker-navbar">
         <div>
           <p class="label-navbar">Location</p>
             <%= f.input :location, label: false, placeholder: "Type a location", class: "question-navbar", input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
         </div>
         <div>
-          <p class="label-navbar">Arrival date</p>
-          <%= f.input :arrival_date, label: false, placeholder: "When?", class:"question-navbar" , input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
-        </div>
-        <div>
-          <p class="label-navbar">Departure date</p>
-          <%= f.input :departure_date, label: false, placeholder: "When?", class:"question-navbar" , input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
+          <p class="label-navbar">Arrival and departure dates</p>
+          <%= text_field_tag :date_range, nil,
+          data: { datepicker_navbar_target: "dateRange" },
+          placeholder: "When?",
+          class: "question-navbar" %>
+          <%= f.input :arrival_date, as: :hidden, input_html: { data: { datepicker_navbar_target: "startDate" } } %>
+          <%= f.input :departure_date, as: :hidden, input_html: { data: { datepicker_navbar_target: "endDate" } } %>
         </div>
         <div>
           <p class="label-navbar">Travellers</p>
+          <%# Ile me dit de mettre ca car question-navbar s'applique pas bien sur travellers et location %>
+          <%# /* CSS pour désactiver les icônes et autres éléments de validation */
+          input.form-control {
+            border-color: initial !important; /* Priorité pour le style de bordure */
+            background-image: none !important; /* Enlever l'image de validation */
+          }
+
+          input.form-control:valid,
+          input.form-control:invalid {
+            background-image: none !important; /* Enlever les images de validation */
+          } %>
           <%= f.input :travellers, label: false, placeholder: "Add travellers", class:"question-navbar" , input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
         </div>
         <div class="icon_navbar" class="fa-solid fa-magnifying-glass">
