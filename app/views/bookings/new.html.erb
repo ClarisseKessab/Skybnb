@@ -13,6 +13,12 @@
   <%= f.input :end_date, as: :hidden,
     input_html: { data: { datepicker_target: "endDate" } } %>
 
+  <% #ici on ajoutera le nombre de voyageurs (en vérifiant la capacité max) %>
+  <% # f.input :travellers %>
+  <p>Nights: <span data-datepicker-target="nights">0</span></p>
+  <p>Price per night: $<span data-datepicker-target="pricePerNight"><%= @island.price_per_night %></span></p>
+  <p>Total: $<span data-datepicker-target="totalPrice">0</span></p>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
+
 </div>
