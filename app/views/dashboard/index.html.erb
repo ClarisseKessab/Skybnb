@@ -1,16 +1,35 @@
 <h1>Dashboard</h1>
 
 <% if @guest_bookings %>
+
   <h2>Bookings as a guest</h2>
+  <div class="cards-island">
   <% @guest_bookings.each do |booking| %>
-  <h3><%= booking.island.name %></h3>
-  <h5>Booking details</h5>
-  <ul>
-    <li class="list-group-item"><p>Date d'arrivée :<%= booking.start_date %></p><p>Date de départ :<%= booking.end_date %></p></li>
-    <li class="list-group-item"><p>île: <%= booking.island.name %></p></li>
-    <li class="list-group-item"><p>Status: <%= booking.status %></p></li>
-  </ul>
+      <div class="card-island">
+          <div id="photoCarousel<%= booking.island_id %>" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: auto;">
+            <div class="carousel-inner">
+              <% if booking.island.photos.attached? %>
+                <% booking.island.photos.each_with_index do |photo, index| %>
+                  <div class="carousel-item <%= 'active' if index.zero? %>">
+                    <%= cl_image_tag photo.key, height: 300, width: 350, crop: :fill, class:"photo-island" %>
+                  </div>
+                <% end %>
+              <% else %>
+                <p>No picture available for this island.</p>
+              <% end %>
+            </div>
+
+          </div>
+          <h5 class="card-title"><%= booking.island.name %></h5>
+          <p class="card-text">
+            <strong>Price per night:</strong> $<%= booking.island.price_per_night %><br>
+            <strong>Capacity:</strong> <%= booking.island.capacity %> guests<br>
+            <strong>Location:</strong> <%= booking.island.location %>
+          </p>
+        </div>
   <% end %>
+  </div>
+</div>
   <% else %>
   <p>No booking yet - <%= link_to "Browse islands", islands_path %></p>
 <% end %>
