@@ -1,80 +1,63 @@
 <div class="card-trip">
- <div class="card-trip-infos" style="max-width: 500px; margin: auto;">
-    <h2><%= @island.name %></h2>
-  <!-- Carousel d'images -->
-  <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 500px; margin: auto;">
-    <div class="carousel-inner">
-      <% if @island.photos.attached? %>
-        <% @island.photos.each_with_index do |photo, index| %>
-          <div class="carousel-item <%= 'active' if index.zero? %>">
-            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <div class="row">
+    <!-- Détails de l'île à gauche -->
+    <div class="col-md-6">
+      <div class="card-trip-infos max-width-500">
+        <h2><%= @island.name %></h2>
+
+        <!-- Carousel d'images -->
+        <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% if @island.photos.attached? %>
+              <% @island.photos.each_with_index do |photo, index| %>
+                <div class="carousel-item <%= 'active' if index.zero? %>">
+                  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+                </div>
+              <% end %>
+            <% else %>
+              <p>No picture available for this island.</p>
+            <% end %>
           </div>
-        <% end %>
-      <% else %>
-        <p>No picture available for this island.</p>
-      <% end %>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-
-  <!-- Infos sur l'île -->
-  <div>
-    <div class="card-trip-infos" style="max-width: 500px; margin: auto;">
-      <p><i><strong><%= @island.description %></strong></i></p>
-
-      <a>Travellers: 20 voyageurs ‧ 1 maison ‧ 1 coin détente </a>
-
-      <div class="roundedImage">
-      <img src="/images/slideshow/1.jpg" alt="1"/> <a>Hôte : [Nom] </a>
-      </div>
-      <a>Singaïa, l'île jungle sauvage flottante, est un véritable joyau suspendu entre ciel et mer. Ce paradis naturel, entouré d’eaux cristallines, abrite une jungle dense et luxuriante où la nature règne en maître. Palmiers imposants, lianes entrelacées et fleurs exotiques dessinent un paysage vibrant et vivant, éveillant les sens à chaque pas. 
-        Au cœur de l'île, un écosystème unique vous attend : cascades scintillantes alimentées par des sources naturelles, criques secrètes bordées de sable doré et une faune extraordinaire, des oiseaux multicolores aux créatures mystérieuses de la jungle. Singaïa est une ode à la tranquillité et à l'aventure, idéale pour les explorateurs en quête de dépaysement ou les âmes en quête de sérénité. 
-        Mais ce qui rend Singaïa vraiment exceptionnelle, c'est sa capacité à flotter gracieusement, dérivant au rythme des courants. À bord de cette île vivante, les visiteurs peuvent admirer des couchers de soleil spectaculaires et un ciel étoilé pur, loin de toute pollution lumineuse. 
-        Venez découvrir une expérience hors du commun, où la beauté brute de la nature se marie au mystère d'une île en mouvement. Singaïa, un rêve sauvage devenu réalité.</a>
-  </div>
-
-    <!-- Détails de la réservation -->
-  <div>
-      <div class="reservation-details">
-        <div>
-          <div>
-            <p><strong>Price per night</strong>: <%= number_to_currency(@island.price_per_night) %></p>
+          <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-          <div>
-            <%= simple_form_for([@island, @booking]) do |f| %>
-            <%= f.input :start_date %>
-            <%= f.input :end_date %>
-            <div class="mb-2">
-            <%= f.submit "To Book", type: "submit", :class=> "btn btn-danger" %>
-                   <% end %>
-            </div>
-          </div>
-          <div class="mb-3">
-            <select class="form-select" required aria-label="select example">
-              <option value="">Travellers</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          <div class="invalid-feedback">Example invalid select feedback</div>
-  </div>
 
-        <p><strong>Total price for 5 nights</strong>: <%= number_to_currency(@island.price_per_night * 5) %></p>
-        <p><strong>Taxes</strong>: <%= number_to_currency(250) %></p>
-        <p><strong>Total</strong>: <%= number_to_currency(@island.price_per_night * 5 + 250) %></p>
+        <!-- Infos sur l'île -->
+        <p><strong><%= @island.description %></strong></p>
+        <p>Travellers max: <%= @island.capacity %></p>
+        <div class="roundedImage">
+          <p>Hôte : <%= @island.user.first_name %></p>
+        </div>
       </div>
-  </div>
-    <!-- Formulaire de réservation -->
+    </div>
 
-    <!-- Prix par nuit -->
-    <h2 class="card-trip-pricing"><%= number_to_currency(@island.price_per_night) %> / nuit</h2>
-  </div>
+    <!-- Formulaire de réservation à droite -->
+    <div class="col-md-6">
+      <h1>New booking</h1>
+      <div data-controller="datepicker">
+        <%= simple_form_for [@island, @booking] do |f| %>
+          <%= text_field_tag :date_range, nil,
+            data: { datepicker_target: "dateRange" },
+            placeholder: "Select date range",
+            class: "form-control" %>
 
+          <%= f.input :start_date, as: :hidden, input_html: { data: { datepicker_target: "startDate" } } %>
+          <%= f.input :end_date, as: :hidden, input_html: { data: { datepicker_target: "endDate" } } %>
+
+          <p>Nights: <span data-datepicker-target="nights">0</span></p>
+          <p>Price per night: $<span data-datepicker-target="pricePerNight"><%= @island.price_per_night %></span></p>
+          <p>Total: $<span data-datepicker-target="totalPrice">0</span></p>
+
+          <%= f.submit class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
