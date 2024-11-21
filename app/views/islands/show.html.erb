@@ -1,35 +1,102 @@
+<!-- app/views/islands/show.html.erb (assuming this is your island's show page) -->
 <div class="card-trip">
-          <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: auto;">
-            <div class="carousel-inner">
-              <% if @island.photos.attached? %>
-                <% @island.photos.each_with_index do |photo, index| %>
-                  <div class="carousel-item <%= 'active' if index.zero? %>">
-                    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-                  </div>
-                <% end %>
-              <% else %>
-                <p>No picture available for this island.</p>
+  <div class="row">
+    <!-- Island details on the left -->
+    <div class="col-md-6">
+      <div class="card-trip-infos max-width-500">
+        <h2><%= @island.name %></h2>
+
+        <!-- Image carousel -->
+        <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% if @island.photos.attached? %>
+              <% @island.photos.each_with_index do |photo, index| %>
+                <div class="carousel-item <%= 'active' if index.zero? %>">
+                  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+                </div>
               <% end %>
-            </div>
-            <% if @island.photos.attached? && @island.photos.count > 1 %>
-              <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+            <% else %>
+              <p>No picture available for this island.</p>
             <% end %>
           </div>
-  <div class="card-trip-infos" style="max-width: 500px; margin: auto;">
-    <div>
-      <h2><%= @island.name %></h2>
-      <p><i><%= @island.description %></i></p>
-      <p><strong>Capacity:</strong> <%= @island.capacity %> guests</p>
-      <p><strong>GPS Longitute:</strong> <%= @island.gps_longitude %></p>
-      <p><strong>GPS Latitude:</strong> <%= @island.gps_latitude %></p>
+          <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <!-- Island info -->
+        <p><strong><%= @island.description %></strong></p>
+        <p>Travellers max: <%= @island.capacity %></p>
+        <div class="roundedImage">
+          <p>Host: <%= @island.user.first_name %></p>
+        </div>
+      </div>
     </div>
-    <h2 class="card-trip-pricing"><%= @island.price_per_night %> $</h2>
+
+    <!-- Booking form on the right -->
+    <div class="col-md-4">
+      <h1>New Booking</h1>
+
+      <!-- Display validation errors -->
+      <% if @booking.errors.any? %>
+        <div id="error_explanation">
+            <% @booking.errors.full_messages.each do |message| %>
+              <p class="text-danger"><%= message %></p>
+            <% end %>
+        </div>
+      <% end %>
+
+      <div data-controller="datepicker">
+        <%= simple_form_for [@island, @booking] do |f| %>
+          <!-- Date Range Picker -->
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <i class="fa-solid fa-calendar"></i>
+            </span>
+            <%= text_field_tag :date_range, nil,
+              data: { datepicker_target: "dateRange" },
+              placeholder: "Select date range",
+              class: "form-control" %>
+          </div>
+
+          <!-- Travellers Input -->
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <i class="fa-solid fa-user"></i>
+            </span>
+            <%= f.input :travellers,
+                        wrapper: false,
+                        label: false,
+                        input_html: {
+                          value: 2,
+                          class: 'form-control'
+                        } %>
+          </div>
+
+          <!-- Hidden Fields -->
+          <%= f.input :paid_price, as: :hidden,
+            input_html: { data: { datepicker_target: "paidPrice" } } %>
+          <%= f.input :start_date, as: :hidden,
+            input_html: { data: { datepicker_target: "startDate" } } %>
+          <%= f.input :end_date, as: :hidden,
+            input_html: { data: { datepicker_target: "endDate" } } %>
+
+          <!-- Price Calculations -->
+          <div class="nights">
+            <p>Nights: <span data-datepicker-target="nights">0</span></p>
+            <p>Price per night: $<span data-datepicker-target="pricePerNight"><%= @island.price_per_night %></span></p>
+            <p>Total: $<span data-datepicker-target="totalPrice">0</span></p>
+          </div>
+
+          <!-- Submit Button -->
+          <%= f.submit class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,29 +1,30 @@
 class BookingsController < ApplicationController
-  before_action :set_guest, only: %i[new create]
+  # Removed unnecessary before_action :set_guest
 
   def index
     @guest_bookings = current_user.bookings
     @owner_bookings = Booking.joins(:island).where(islands: { user_id: current_user.id })
   end
 
-  def new
-    @booking = Booking.new
-    @guest = current_user
-    @island = Island.find(params[:island_id])
-  end
+  # Since the form is on the islands/show page, the new action is no longer needed
+  # def new
+  #   @booking = Booking.new
+  #   @island = Island.find(params[:island_id])
+  # end
 
   def create
-    @booking = Booking.new(params_booking)
-    @booking.user = @guest
     @island = Island.find(params[:island_id])
+    @booking = Booking.new(params_booking)
+    @booking.user = current_user
     @booking.island = @island
     @booking.status = "pending"
-    if @booking.save
-      redirect_to dashboard_path
-    else
-      render :new, status: :unprocessable_entity
-    end
 
+    if @booking.save
+      redirect_to dashboard_path, notice: 'Booking successfully created.'
+    else
+      # Ensure all variables needed for islands/show are set
+      render 'islands/show', status: :unprocessable_entity
+    end
   end
 
   def show
@@ -50,11 +51,7 @@ class BookingsController < ApplicationController
 
   private
 
-  def set_guest
-    @guest = current_user
-  end
-
   def params_booking
-    params.require(:booking).permit(:start_date, :end_date, :status, :island_id, :user_id)
+    params.require(:booking).permit(:start_date, :end_date, :status, :island_id, :user_id, :paid_price, :travellers)
   end
 end

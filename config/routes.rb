@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   resources :islands, only: [:index, :show, :new, :create] do
     resources :bookings, only: [:index, :show, :new, :create,:edit, :update]
+    collection do
+      get :search
+    end
   end
 
   resources :bookings, only: [:index, :show]
@@ -31,7 +34,6 @@ Rails.application.routes.draw do
         delete :delete_photo
       end
     end
-
     delete 'islands/:id', to: 'islands#destroy', as: 'delete_island'
   end
 end
