@@ -1,14 +1,16 @@
-<h1>Dashboard</h1>
-
-<% if @guest_bookings %>
-
-  <h2>Bookings as a guest</h2>
-  <div class="cards-island">
-  <% @guest_bookings.each do |booking| %>
-      <div class="card-island">
-        <div class="tag-status">
-          <p><%= booking.status %></p>
-        </div>
+<div class="dashboard">
+  <% if @guest_bookings.present? %>
+    <h2>My bookings</h2>
+    <div class="cards-island">
+      <% @guest_bookings.each do |booking| %>
+        <div class="card-island">
+          <% if booking.status == 'confirmed'%>
+            <%= render 'shared/tags-booking/tag_confirmed' %>
+          <% elsif booking.status == 'cancelled'%>
+            <%= render 'shared/tags-booking/tag_cancelled' %>
+          <% else %>
+            <%= render 'shared/tags-booking/tag_pending' %>
+          <% end %>
           <div id="photoCarousel<%= booking.island_id %>" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: auto;">
             <div class="carousel-inner">
               <% if booking.island.photos.attached? %>
@@ -23,51 +25,129 @@
             </div>
           </div>
           <div class="card-island-texts">
-          <h5 class="card-island-title"><%= booking.island.name %></h5>
-          <p class="card-island-text">
-            <strong><%= booking.start_date %></strong> au <strong><%= booking.end_date %></strong>
+            <h5 class="card-island-title"><%= booking.island.name %></h5>
+            <p class="card-island-text">
+              <strong><%= booking.start_date %></strong> au <strong><%= booking.end_date %></strong>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="no-booking d-flex">
+      <div class="no-booking-text">
+        <h3>No trips booked... yet!</h3>
+        <p>It's time to get out your suitcases and prepare for your next adventure.</p>
+        <%= link_to islands_path, class:"btn-recherche" do %>
+          Start search
+        <% end %>
+      </div>
+      <div class="nobooking-photo">
+        <%= image_tag "nobooking.png", alt: "no-booking", width: 200, class:"nobooking-photo" %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @owner_bookings.present? %>
+    <h2>Bookings on my islands</h2>
+    <div class="cards-island">
+      <% @owner_bookings.each do |booking| %>
+        <div class="card-island-owner">
+          <% if booking.status == 'confirmed'%>
+            <%= render 'shared/tags-booking/tag_confirmed' %>
+          <% elsif booking.status == 'cancelled'%>
+            <%= render 'shared/tags-booking/tag_cancelled' %>
+          <% else %>
+            <%= render 'shared/tags-booking/tag_pending' %>
+          <% end %>
+          <div id="photoCarousel<%= booking.island_id %>" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: auto;">
+            <div class="carousel-inner">
+              <% if booking.island.photos.attached? %>
+                <% booking.island.photos.each_with_index do |photo, index| %>
+                  <div class="carousel-item <%= 'active' if index.zero? %>">
+                    <%= cl_image_tag photo.key, height: 300, width: 350, crop: :fill, class:"photo-island" %>
+                  </div>
+                <% end %>
+              <% else %>
+                <p>No picture available for this island.</p>
+              <% end %>
+            </div>
+          </div>
+          <div class="card-island-texts">
+            <h5 class="card-island-title"><%= booking.island.name %></h5>
+            <p>du <strong><%= booking.start_date %></strong> au <strong><%= booking.end_date %></strong></p>
+            <% if booking.status == "pending" %>
+              <div class="btns-pending">
+                <%= link_to accept_owner_booking_path(booking), data: {turbo_method: :patch} do %>
+                  <i class="fa-solid fa-check btn-valid"></i>
+                <% end %>
+                <%= link_to refuse_owner_booking_path(booking), data: {turbo_method: :patch} do %>
+                  <i class="fa-solid fa-x btn-cancel"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @islands.present? %>
+    <h2>My islands</h2>
+    <div class="cards-island">
+    <%= link_to new_island_path do %>
+      <div class="noisland">
+        <p class="noisland-text">Add Island</p>
+        <i class="fa-solid fa-plus noisland-icon"></i>
+      </div>
+      <% end %>
+    <% @islands.each do |island| %>
+    <div class="card-island">
+      <div class="island-edit">
+      <%= link_to edit_owner_island_path(island) do %>
+      <i class="fa-solid fa-pen"></i>
+      <% end %>
+      </div>
+      <div class="island-delete">
+      <%= link_to owner_delete_island_path(island), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete this island?"} do %>
+      <i class="fa-solid fa-trash"></i>
+      <% end %>
+      </div>
+      <div id="photoCarousel<%= island.photos %>" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: auto;">
+            <div class="carousel-inner">
+              <% if island.photos.attached? %>
+                <% island.photos.each_with_index do |photo, index| %>
+                  <div class="carousel-item <%= 'active' if index.zero? %>">
+                    <%= cl_image_tag photo.key, height: 300, width: 350, crop: :fill, class:"photo-island" %>
+                  </div>
+                <% end %>
+              <% else %>
+                <p>No picture available for this island.</p>
+              <% end %>
+            </div>
+          </div>
+          <div class="card-island-texts">
+      <h3><%= island.name %></h3>
+      <p>
+            <strong>Price per night:</strong> $<%= island.price_per_night %><br>
+            <strong>Capacity:</strong> <%= island.capacity %> guests<br>
+            <strong>Location:</strong> <%= island.location %>
           </p>
-        </div>
-        </div>
+          </div>
+    </div>
+    <% end %>
+    </div>
+  <% else %>
+    <h2>My islands</h2>
+    <%= link_to new_island_path do %>
+      <div class="noisland">
+        <p class="noisland-text">Add Island</p>
+        <i class="fa-solid fa-plus noisland-icon"></i>
+      </div>
+    <% end %>
   <% end %>
   </div>
+  <% if user_signed_in? %>
+    <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn-deconnect" %>
+  <% end %>
 </div>
-
-  <% else %>
-  <p>No booking yet - <%= link_to "Browse islands", islands_path %></p>
-<% end %>
-
-<% if @owner_bookings %>
-  <h2>Bookings as an owner</h2>
-  <% @owner_bookings.each do |booking| %>
-  <h3><%= booking.island.name %></h3>
-  <h5>Booking details</h5>
-  <ul>
-    <li class="list-group-item"><p>Date d'arrivée :<%= booking.start_date %></p><p>Date de départ :<%= booking.end_date %></p></li>
-    <li class="list-group-item"><p>île: <%= booking.island.name %></p></li>
-    <li class="list-group-item"><p>Status: <%= booking.status %></p></li>
-    <% if booking.status == "pending" %>
-    <li class="list-group-item">
-      <%= link_to "accept", accept_owner_booking_path(booking), data: {turbo_method: :patch} %>
-        -
-      <%= link_to "refuse", refuse_owner_booking_path(booking), data: {turbo_method: :patch} %>
-    </li>
-    <% end %>
-  </ul>
-  <% end %>
-  <% else %>
-  <p>No booking request yet</p>
-<% end %>
-
-<% if @islands %>
-  <h2>My islands</h2>
-  <% @islands.each do |island| %>
-    <h3><%= island.name %></h3>
-  <% end %>
-<% else %>
-  <p>No island yet - <%= link_to "Create my island", new_island_path %></p>
-<% end %>
-
-<% if user_signed_in? %>
-  <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger" %>
-<% end %>

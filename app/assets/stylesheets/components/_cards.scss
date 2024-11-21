@@ -5,21 +5,20 @@
 }
 
 .cards-island {
-
   display: flex;
   gap: 20px;
   transition: transform 0.3s ease;
   overflow-x: auto;
   padding-block:30px;
+  margin-left: 10px;
 }
 
 .card-island {
   position: relative;
   flex: 0 0 auto;
-  width: 300px; /* Ajustez selon vos besoins */
+  width: 300px;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  z-index:-1;
 }
 
 #photoCarousel {
@@ -29,7 +28,7 @@
 .photo-island {
   border-radius: 20px 20px 0 0;
   width: 100%;
-  height: 200px; /* Ajustez selon vos besoins */
+  height: 200px;
   object-fit: cover;
 }
 
@@ -42,14 +41,212 @@
   margin:0;
 }
 
-.tag-status{
+.tag-status-confirmed{
   color:white;
   position:absolute;
-  background-color:rgba(156, 4, 4, 0.685);
+  background-color:rgba(42, 156, 4, 0.931);
   padding-block:5px;
   padding-inline: 20px;
   border-radius:10px;
-  top:40px;
-  left: 170px;
+  top:20px;
+  left: 150px;
+  z-index: 10;
+  margin:0;
+  overflow: visible;
+}
 
+.tag-status-cancelled{
+  color:white;
+  position:absolute;
+  background-color:rgba(156, 22, 4, 0.931);
+  padding-block:5px;
+  padding-inline: 20px;
+  border-radius:10px;
+  top:20px;
+  left: 160px;
+  z-index: 10;
+  margin:0;
+}
+
+.tag-status-pending{
+  color:white;
+  position:absolute;
+  background-color:rgba(245, 121, 19, 0.931);
+  padding-block:5px;
+  padding-inline: 20px;
+  border-radius:10px;
+  top:20px;
+  left: 165px;
+  z-index: 10;
+}
+
+.tag-status-pending p{
+  margin:0;
+}
+
+.tag-status-cancelled p{
+  margin:0;
+}
+
+.tag-status-confirmed p{
+  margin:0;
+}
+
+.btn-valid{
+  background-color: white;
+  padding-block:10px;
+  padding-inline:13px;
+  font-size:35px;
+  border-radius:100px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: solid #000000 1px;
+  color:#008409
+}
+
+.btn-cancel{
+  background-color: white;
+  padding-block:10px;
+  padding-inline:15px;
+  font-size:35px;
+  border-radius:100px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: solid #000000 1px;
+  color:#be1717
+}
+
+.btns-pending{
+  position: absolute;
+  bottom: -20px; /* Ajustez cette valeur selon vos besoins */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 1;
+  top:280px;
+}
+
+.card-island-owner {
+  position: relative;
+  flex: 0 0 auto;
+  width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding-bottom: 20px;
+}
+
+.no-booking{
+  display: flex;
+  border: solid #f6f6f6 0.5px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom:20px;
+  height:200px;
+  overflow: hidden;
+}
+
+.no-booking-text{
+  margin:0px;
+  margin-bottom: 20px;
+  padding-inline:30px;
+  padding-block: 25px;
+}
+
+.btn-recherche{
+  background-color: #5F94D8;
+  color:aliceblue;
+  padding-inline:15px;
+  padding-block:10px;
+  text-decoration:none;
+  border-radius: 10px;
+}
+
+.no-booking-text{
+  width:450px;
+}
+
+.nobooking-photo img{
+  object-position: 0px -180px;
+    width: 860px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.noisland{
+  font-size: 25px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding-block: 20px;
+  padding-inline: 30px;
+  border-radius:40px;
+  width: 300px;
+  height:300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.noisland-icon{
+  color:white;
+  background-color: rgb(224, 224, 224);
+  border-radius: 20px;
+  padding-inline: 15px;
+  padding-block: 10px;
+}
+
+.noisland{
+  font-size: 25px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding-block: 20px;
+  padding-inline: 30px;
+  border-radius:40px;
+  width:300px;
+  height:360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+a{
+  text-decoration: none;
+  color:black;
+}
+
+body{
+ background-color: #fcfcfc;
+}
+
+.island-edit{
+  color:black;
+  position:absolute;
+  background-color:white;
+  padding-block:5px;
+  padding-inline: 20px;
+  border-radius:10px;
+  top:20px;
+  left: 15px;
+  z-index: 10;
+}
+.island-delete{
+  color:black;
+  position:absolute;
+  background-color:white;
+  padding-block:5px;
+  padding-inline: 20px;
+  border-radius:10px;
+  top:20px;
+  right:10px;
+  z-index: 10;
+}
+
+.btn-deconnect{
+  background-color:#da2137;
+  color:aliceblue;
+  padding-inline:15px;
+  padding-block:10px;
+  text-decoration:none;
+  border-radius: 10px;
+  margin: 30px;
 }
