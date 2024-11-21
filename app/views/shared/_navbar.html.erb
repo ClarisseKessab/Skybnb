@@ -4,29 +4,30 @@
       <%= image_tag "Logo.png", alt: "logo-skybnb", width: 200 %>
     <% end %>
   </div>
-
-  <div class="reservation_navbar">
-    <div>
-      <p class="label-navbar">Destination</p>
-      <p class="question-navbar">Où ?</p>
-    </div>
-    <div>
-      <p class="label-navbar">Arrivée</p>
-      <p class="question-navbar">Quand ? </p>
-    </div>
-    <div>
-      <p class="label-navbar">Départ</p>
-      <p class="question-navbar">Quand ?</p>
-    </div>
-    <div>
-      <p class="label-navbar">Voyageurs</p>
-      <p class="question-navbar">Combien ?</p>
-    </div>
-    <div class="icon_navbar">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </div>
-  </div>
-
+  <%= simple_form_for @search, url:  search_islands_path, method: :get do |f| %>
+      <div class="reservation_navbar">
+        <div>
+          <p class="label-navbar">Location</p>
+            <%= f.input :location, label: false, placeholder: "Type a location", class: "question-navbar", input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
+        </div>
+        <div>
+          <p class="label-navbar">Arrival date</p>
+          <%= f.input :arrival_date, label: false, placeholder: "When?", class:"question-navbar" , input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
+        </div>
+        <div>
+          <p class="label-navbar">Departure date</p>
+          <%= f.input :departure_date, label: false, placeholder: "When?", class:"question-navbar" , input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
+        </div>
+        <div>
+          <p class="label-navbar">Travellers</p>
+          <%= f.input :travellers, label: false, placeholder: "Add travellers", class:"question-navbar" , input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
+        </div>
+        <div class="icon_navbar" class="fa-solid fa-magnifying-glass">
+          <%# si je mets la classe sur le bouton, le bouton submit ne marche plus! ATTENTION à revoir cette classe %>
+          <%= f.button :submit, "" %>
+        </div>
+      </div>
+   <% end %>
     <div class="profile_navbar">
       <%= link_to dashboard_path do %>
       <i class="fas fa-user"></i>

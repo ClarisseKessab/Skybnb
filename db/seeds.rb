@@ -256,18 +256,22 @@ islands[14].save
 
 # Création de 2 à 3 réservations par utilisateur
 users.each do |user|
-  # Sélection de 2 à 3 îles aléatoires
   selected_islands = islands.sample(3)
 
-  # Pour chaque île sélectionnée, créer une réservation
   selected_islands.each do |island|
-    Booking.create!(
-      start_date: Date.today + rand(1..10), # Date de début dans les 10 prochains jours
-      end_date: Date.today + rand(11..20),   # Date de fin entre 11 et 20 jours après
-      status: ["confirmed", "pending", "cancelled"].sample, # Statut aléatoire
-      island: island,
-      user: user
-    )
+    begin
+      Booking.create!(
+        start_date: Date.today + rand(1..10),
+        end_date: Date.today + rand(11..20),
+        status: ["confirmed", "pending", "cancelled"].sample,
+        island: island,
+        user: user,
+        travellers: rand(1..10),
+        paid_price: (rand(100..1000) / 100.0).round(2)
+      )
+    rescue StandardError => e
+      puts "Error creating booking for user #{user.email} on island #{island.name}: #{e.message}"
+    end
   end
 end
 puts "Bookings created!"
