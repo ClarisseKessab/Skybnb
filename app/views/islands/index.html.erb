@@ -1,10 +1,10 @@
 <h1>Browse Islands</h1>
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-  <% @islands.each do |island| %>
+  <% @islands.each_with_index do |island, island_index| %>
     <div class="col">
       <div class="card h-100">
         <div class="card-body">
-          <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 500px; margin: auto;">
+          <div id="photoCarousel<%= island_index %>" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: auto;">
             <div class="carousel-inner">
               <% if island.photos.attached? %>
                 <% island.photos.each_with_index do |photo, index| %>
@@ -16,14 +16,16 @@
                 <p>No picture available for this island.</p>
               <% end %>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+            <% if island.photos.attached? && island.photos.count > 1 %>
+              <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel<%= island_index %>" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel<%= island_index %>" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+             <% end %>
           </div>
           <h5 class="card-title"><%= island.name %></h5>
           <p class="card-text">
