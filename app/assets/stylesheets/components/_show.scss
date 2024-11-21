@@ -30,3 +30,15 @@ padding-inline: 20px;
 .connect{
 display : flex;
 }
+
+.sign_up{
+display : flex;
+flex-direction : column;
+align-items : center;
+flex-direction: column;
+border-radius: 20px;
+text-align: center;
+box-shadow:  0 4px 8px rgba(0,0,0,0.1);
+padding-inline: 20px;
+align-items: stretch;
+}
