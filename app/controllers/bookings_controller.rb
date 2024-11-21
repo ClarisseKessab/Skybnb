@@ -20,7 +20,7 @@ class BookingsController < ApplicationController
     @booking.status = "pending"
 
     if @booking.save
-      redirect_to dashboard_path
+      redirect_to dashboard_path, notice: 'Booking successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
