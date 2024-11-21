@@ -1,44 +1,43 @@
-<h1>Browse Islands</h1>
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-  <% @islands.each_with_index do |island, island_index| %>
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <div id="photoCarousel<%= island_index %>" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: auto;">
-            <div class="carousel-inner">
-              <% if island.photos.attached? %>
-                <% island.photos.each_with_index do |photo, index| %>
-                  <div class="carousel-item <%= 'active' if index.zero? %>">
-                    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-                  </div>
+  <h1>Browse Islands</h1>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% @islands.each_with_index do |island, island_index| %>
+      <div class="col">
+        <div class="card h-100">
+
+          <%= link_to island_path(island) do %>
+          <div class="card-body">
+            <div id="photoCarousel<%= island_index %>" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: auto;">
+              <div class="carousel-inner">
+                <% if island.photos.attached? %>
+                  <% island.photos.each_with_index do |photo, index| %>
+                    <div class="carousel-item <%= 'active' if index.zero? %>">
+                      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <p>No picture available for this island.</p>
                 <% end %>
-              <% else %>
-                <p>No picture available for this island.</p>
+              </div>
+              <% if island.photos.attached? && island.photos.count > 1 %>
+                <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel<%= island_index %>" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel<%= island_index %>" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               <% end %>
             </div>
-            <% if island.photos.attached? && island.photos.count > 1 %>
-              <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel<%= island_index %>" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel<%= island_index %>" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-             <% end %>
+            <h5 class="card-title"><%= island.name %></h5>
+            <p class="card-text">
+              <strong>Price per night:</strong> $<%= island.price_per_night %><br>
+              <strong>Capacity:</strong> <%= island.capacity %> guests<br>
+              <strong>Location:</strong> <%= island.location %>
+            </p>
           </div>
-          <h5 class="card-title"><%= island.name %></h5>
-          <p class="card-text">
-            <strong>Price per night:</strong> $<%= island.price_per_night %><br>
-            <strong>Capacity:</strong> <%= island.capacity %> guests<br>
-            <strong>Location:</strong> <%= island.location %>
-          </p>
-        </div>
-        <div class="card-footer">
-          <%= link_to "View Details", island_path(island), class: "btn btn-primary" %>
-          <%= link_to "Book", new_island_booking_path(island) %>
+          <% end %>
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
