@@ -9,3 +9,4 @@ pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
 pin "@fortawesome/fontawesome-free", to: "https://ga.jspm.io/npm:@fortawesome/fontawesome-free@6.1.1/js/all.js"
 pin "@rails/ujs", to: "@rails--ujs.js" # @7.1.3
+pin "flatpickr" # @4.6.13

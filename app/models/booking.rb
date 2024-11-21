@@ -1,7 +1,6 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :island
-
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :status, presence: true
@@ -17,4 +16,5 @@ class Booking < ApplicationRecord
   }
 
   enum status: { pending: 'pending', confirmed: 'confirmed', cancelled: 'cancelled' }
+  attr_accessor :date_range
 end
