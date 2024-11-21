@@ -1,6 +1,6 @@
 <h1>Dashboard</h1>
 
-<% if !@guest_bookings %>
+<% if @guest_bookings %>
   <h2>Bookings as a guest</h2>
   <% @guest_bookings.each do |booking| %>
   <h3><%= booking.island.name %></h3>
@@ -15,7 +15,7 @@
   <p>No booking yet - <%= link_to "Browse islands", islands_path %></p>
 <% end %>
 
-<% if !@owner_bookings %>
+<% if @owner_bookings %>
   <h2>Bookings as an owner</h2>
   <% @owner_bookings.each do |booking| %>
   <h3><%= booking.island.name %></h3>
@@ -37,11 +37,15 @@
   <p>No booking request yet</p>
 <% end %>
 
-<% if !@islands %>
+<% if @islands %>
   <h2>My islands</h2>
   <% @islands.each do |island| %>
     <h3><%= island.name %></h3>
   <% end %>
 <% else %>
   <p>No island yet - <%= link_to "Create my island", new_island_path %></p>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger" %>
 <% end %>

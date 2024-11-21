@@ -1,6 +1,24 @@
 <h1>New booking</h1>
+<div data-controller="datepicker">
 <%= simple_form_for [@island, @booking] do |f| %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
+  <%= text_field_tag :date_range, nil,
+    data: {
+      datepicker_target: "dateRange"
+    },
+    placeholder: "Select date range",
+    class: "form-control" %>
+
+  <%= f.input :start_date, as: :hidden,
+    input_html: { data: { datepicker_target: "startDate" } } %>
+  <%= f.input :end_date, as: :hidden,
+    input_html: { data: { datepicker_target: "endDate" } } %>
+
+  <% #ici on ajoutera le nombre de voyageurs (en vérifiant la capacité max) %>
+  <% # f.input :travellers %>
+  <p>Nights: <span data-datepicker-target="nights">0</span></p>
+  <p>Price per night: $<span data-datepicker-target="pricePerNight"><%= @island.price_per_night %></span></p>
+  <p>Total: $<span data-datepicker-target="totalPrice">0</span></p>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
+
+</div>
