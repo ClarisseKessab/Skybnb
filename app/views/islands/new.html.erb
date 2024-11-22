@@ -1,4 +1,5 @@
 <div class="container mt-5">
+  <div class= "create">
   <h1 class="text-center mb-4">Create a New Island</h1>
   <%= simple_form_for(@island) do |f| %>
     <%= f.input :name, placeholder: "Enter the island name" %>
@@ -12,6 +13,9 @@
       </div>
     </div>
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit class: "btn btn-primary" %>
+    <div class="create-actions">
+      <%= f.submit class: "btn btn-primary" %>
+     </div>
   <% end %>
+   </div>
 </div>

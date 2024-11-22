@@ -8,6 +8,11 @@ class IslandsController < ApplicationController
   def show
     @island = Island.find(params[:id])
     @booking = Booking.new
+
+    @marker = {
+      lat: @island.gps_latitude,
+      lng: @island.gps_longitude
+    }
   end
 
   def new

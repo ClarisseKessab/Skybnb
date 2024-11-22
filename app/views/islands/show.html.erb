@@ -39,13 +39,22 @@
         <div class="roundedImage">
           <p><strong>Host:</strong> <%= @island.user.first_name %></p>
         </div>
+
+        <div style="width: 100%; height: 600px;"
+            data-controller="map"
+            data-map-marker-value="<%= @marker.to_json %>"
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
       </div>
     </div>
 
     <!-- Booking form on the right -->
-    <div class="col-md-4">
-      <h1>New Booking</h1>
 
+
+
+    <div class="col-md-4">
+      <div class="booking-form-container">
+      <h1>New Booking</h1>
       <!-- Display validation errors -->
       <% if @booking.errors.any? %>
         <div id="error_explanation">
@@ -54,7 +63,6 @@
             <% end %>
         </div>
       <% end %>
-
       <div data-controller="datepicker">
         <%= simple_form_for [@island, @booking] do |f| %>
           <!-- Date Range Picker -->
@@ -68,9 +76,6 @@
               class: "form-control",
               input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
           </div>
-
-
-
           <!-- Travellers Input -->
           <div class="input-group mb-3">
             <span class="input-group-text">
@@ -85,7 +90,6 @@
                           input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' }
                         } %>
           </div>
-
           <!-- Hidden Fields -->
           <%= f.input :paid_price, as: :hidden,
             input_html: { data: { datepicker_target: "paidPrice" } } %>
@@ -93,18 +97,17 @@
             input_html: { data: { datepicker_target: "startDate" } } %>
           <%= f.input :end_date, as: :hidden,
             input_html: { data: { datepicker_target: "endDate" } } %>
-
           <!-- Price Calculations -->
           <div class="nights">
             <p><strong>Nights:</strong> <span data-datepicker-target="nights">0</span></p>
             <p><strong>Price per night:</strong> $<span data-datepicker-target="pricePerNight"><%= @island.price_per_night %></span></p>
             <p><strong>Total:</strong> $<span data-datepicker-target="totalPrice">0</span></p>
           </div>
-
           <!-- Submit Button -->
           <%= f.submit class: "btn btn-primary" %>
         <% end %>
       </div>
+    </div>
     </div>
   </div>
 </div>

@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= favicon_link_tag asset_path('cloud.png') %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <%= javascript_importmap_tags %>
  </head>
 
   <body>
-  <% if controller_name == 'islands' && action_name == 'show' %>
+  <% if controller_name == 'dashboard'%>
         <%= render 'shared/navbar_simple' %>
   <% else %>
         <%= render 'shared/navbar' %>
