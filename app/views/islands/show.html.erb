@@ -1,26 +1,24 @@
-<!-- app/views/islands/show.html.erb (assuming this is your island's show page) -->
+<!-- app/views/islands/show.html.erb -->
 <div class="card-trip">
   <div class="row">
+    <h2 class="mb-4"><%= @island.name %></h2>
     <!-- Island details on the left -->
-    <div class="col-md-6">
-      <div class="card-trip-infos max-width-500">
-        <h2><%= @island.name %></h2>
-
+    <div class="col-md-8">
+      <div class="card-trip-infos">
         <!-- Image carousel -->
-        <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: left;">
-        <%# <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel"> %>
+        <div id="photoCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
           <div class="carousel-inner">
             <% if @island.photos.attached? %>
               <% @island.photos.each_with_index do |photo, index| %>
                 <div class="carousel-item <%= 'active' if index.zero? %>">
-                  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+                  <%= cl_image_tag photo.key, height: 400, width: 600, crop: :fill, class: 'd-block w-100', style: 'object-fit: cover; border-radius: 15px;' %>
                 </div>
               <% end %>
             <% else %>
               <p>No picture available for this island.</p>
             <% end %>
           </div>
-          <% if @island.photos.attached? &&  @island.photos.count > 1 %>
+          <% if @island.photos.attached? && @island.photos.count > 1 %>
             <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
@@ -33,81 +31,100 @@
         </div>
 
         <!-- Island info -->
-        <p><i><%= @island.description %></i></p>
-         <p><strong>Location:</strong> <%= @island.location %> guests</p>
-        <p><strong>Capacity:</strong> <%= @island.capacity %> guests</p>
-        <div class="roundedImage">
-          <p><strong>Host:</strong> <%= @island.user.first_name %></p>
+        <div class="island-description mb-4">
+          <h3 class="mb-3">About this island</h3>
+          <p class="lead"><%= @island.description %></p>
         </div>
 
-        <div style="width: 100%; height: 600px;"
-            data-controller="map"
-            data-map-marker-value="<%= @marker.to_json %>"
-            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+        <div class="island-details">
+          <div class="detail-item mb-3">
+            <i class="fa-solid fa-map-marker-alt text-primary me-2"></i>
+            <span><strong>Location:</strong> <%= @island.location %></span>
+          </div>
+          <div class="detail-item mb-3">
+            <i class="fa-solid fa-users text-primary me-2"></i>
+            <span><strong>Capacity:</strong> <%= @island.capacity %> guests</span>
+          </div>
+          <div class="detail-item mb-3">
+            <i class="fa-solid fa-user-circle text-primary me-2"></i>
+            <span><strong>Host:</strong> <%= @island.user.first_name %></span>
+          </div>
+        </div>
 
+        <!-- Map -->
+        <div style="width: 100%; height: 400px;"
+             data-controller="map"
+             data-map-marker-value="<%= @marker.to_json %>"
+             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
       </div>
     </div>
 
     <!-- Booking form on the right -->
-
-
-
     <div class="col-md-4">
-      <div class="booking-form-container">
-      <h1>New Booking</h1>
-      <!-- Display validation errors -->
-      <% if @booking.errors.any? %>
-        <div id="error_explanation">
+      <div class="booking-form-container" style="top: 20px;">
+        <h1>Book this island</h1>
+        <!-- Display validation errors -->
+        <% if @booking.errors.any? %>
+          <div id="error_explanation">
             <% @booking.errors.full_messages.each do |message| %>
               <p class="text-danger"><%= message %></p>
             <% end %>
-        </div>
-      <% end %>
-      <div data-controller="datepicker">
-        <%= simple_form_for [@island, @booking] do |f| %>
-          <!-- Date Range Picker -->
-          <div class="input-group mb-3">
-            <span class="input-group-text">
-              <i class="fa-solid fa-calendar"></i>
-            </span>
-            <%= text_field_tag :date_range, nil,
-              data: { datepicker_target: "dateRange" },
-              placeholder: "When?",
-              class: "form-control",
-              input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
           </div>
-          <!-- Travellers Input -->
-          <div class="input-group mb-3">
-            <span class="input-group-text">
-              <i class="fa-solid fa-user"></i>
-            </span>
-            <%= f.input :travellers,
-                        wrapper: false,
-                        label: false,
-                        input_html: {
-                          value: 2,
-                          class: 'form-control',
-                          input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' }
-                        } %>
-          </div>
-          <!-- Hidden Fields -->
-          <%= f.input :paid_price, as: :hidden,
-            input_html: { data: { datepicker_target: "paidPrice" } } %>
-          <%= f.input :start_date, as: :hidden,
-            input_html: { data: { datepicker_target: "startDate" } } %>
-          <%= f.input :end_date, as: :hidden,
-            input_html: { data: { datepicker_target: "endDate" } } %>
-          <!-- Price Calculations -->
-          <div class="nights">
-            <p><strong>Nights:</strong> <span data-datepicker-target="nights">0</span></p>
-            <p><strong>Price per night:</strong> $<span data-datepicker-target="pricePerNight"><%= @island.price_per_night %></span></p>
-            <p><strong>Total:</strong> $<span data-datepicker-target="totalPrice">0</span></p>
-          </div>
-          <!-- Submit Button -->
-          <%= f.submit class: "btn btn-primary" %>
         <% end %>
+        <div data-controller="datepicker">
+          <%= simple_form_for [@island, @booking] do |f| %>
+            <!-- Date Range Picker -->
+            <div class="input-group mb-3">
+              <span class="input-group-text">
+                <i class="fa-solid fa-calendar"></i>
+              </span>
+              <%= text_field_tag :date_range, nil,
+                data: { datepicker_target: "dateRange" },
+                placeholder: "When?",
+                class: "form-control" %>
+            </div>
+            <!-- Travellers Input -->
+            <div class="input-group mb-3">
+              <span class="input-group-text">
+                <i class="fa-solid fa-user"></i>
+              </span>
+              <%= f.input :travellers,
+                          wrapper: false,
+                          label: false,
+                          input_html: {
+                            value: 2,
+                            class: 'form-control'
+                          } %>
+            </div>
+            <!-- Hidden Fields -->
+            <%= f.input :paid_price, as: :hidden,
+              input_html: { data: { datepicker_target: "paidPrice" } } %>
+            <%= f.input :start_date, as: :hidden,
+              input_html: { data: { datepicker_target: "startDate" } } %>
+            <%= f.input :end_date, as: :hidden,
+              input_html: { data: { datepicker_target: "endDate" } } %>
+            <!-- Price Calculations -->
+            <div class="nights">
+              <div class="d-flex justify-content-between mb-2">
+                <p><strong>Nights</strong></p>
+                <p><span data-datepicker-target="nights">0</span></p>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <p><strong>Price per night</strong></p>
+                <p>$<span data-datepicker-target="pricePerNight"><%= @island.price_per_night %></span></p>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between mb-2">
+                <p><strong>Total</strong></p>
+                <p>$<span data-datepicker-target="totalPrice">0</span></p>
+              </div>
+            </div>
+            <!-- Submit Button -->
+            <%= f.submit "Book Now", class: "btn btn-primary w-100" %>
+          <% end %>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </div>
