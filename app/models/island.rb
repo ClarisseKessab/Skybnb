@@ -1,4 +1,5 @@
 class Island < ApplicationRecord
+  extend Geocoder::Model::ActiveRecord
   belongs_to :user
   has_many :bookings
   has_many_attached :photos
@@ -10,4 +11,6 @@ class Island < ApplicationRecord
   validates :capacity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :gps_longitude, presence: true
   validates :gps_latitude, presence: true
+
+  geocoded_by :location
 end

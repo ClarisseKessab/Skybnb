@@ -22,6 +22,13 @@ class IslandsController < ApplicationController
   def create
     @island = Island.new(island_params)
     @island.user = current_user
+    @result = Geocoder.coordinates(params[:island][:location]);
+    if @result
+      @island.gps_longitude = @result[0].to_s
+      @island.gps_latitude = @result[1].to_s
+    else
+      errors.add(:location, "Unable to find this location.")
+    end
     if @island.save
       redirect_to island_path(@island)
     else
