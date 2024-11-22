@@ -8,7 +8,7 @@
       <div class="reservation_navbar" data-controller="datepicker-navbar">
         <div>
           <p class="label-navbar">Location</p>
-            <%= f.input :location, label: false, placeholder: "Type a location", class: "question-navbar", input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
+            <%= f.input :location, label: false, placeholder: "Type a location", input_html: { class: 'input-navbar'} %>
         </div>
         <div>
           <p class="label-navbar">Arrival and departure dates</p>
@@ -19,27 +19,18 @@
             <%= text_field_tag :date_range, nil,
             data: { datepicker_navbar_target: "dateRange" },
             placeholder: "When?",
-            class: "question-navbar" %>
+            class: "input-navbar" %>
           </div>
         </div>
         <div>
           <p class="label-navbar">Travellers</p>
-          <%# Ile me dit de mettre ca car question-navbar s'applique pas bien sur travellers et location %>
-          <%# /* CSS pour désactiver les icônes et autres éléments de validation */
-          input.form-control {
-            border-color: initial !important; /* Priorité pour le style de bordure */
-            background-image: none !important; /* Enlever l'image de validation */
-          }
-
-          input.form-control:valid,
-          input.form-control:invalid {
-            background-image: none !important; /* Enlever les images de validation */
-          } %>
-          <%= f.input :travellers, label: false, placeholder: "Add travellers", class:"question-navbar" , input_html: { class: 'form-control', style: 'border-color: initial; background-image: none;' } %>
+          <%= f.input :travellers, label: false, placeholder: "Add travellers" , input_html: { class: 'input-navbar'} %>
         </div>
         <div class="icon_navbar" class="fa-solid fa-magnifying-glass">
           <%# si je mets la classe sur le bouton, le bouton submit ne marche plus! ATTENTION à revoir cette classe %>
-          <%= f.button :submit, "" %>
+          <%= button_tag(type: 'submit',class:"icon") do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <% end %>
         </div>
       </div>
     <%= f.input :arrival_date, as: :hidden, input_html: { data: { datepicker_navbar_target: "startDate" } } %>
