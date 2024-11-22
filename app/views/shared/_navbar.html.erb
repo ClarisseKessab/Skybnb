@@ -45,9 +45,16 @@
     <%= f.input :arrival_date, as: :hidden, input_html: { data: { datepicker_navbar_target: "startDate" } } %>
     <%= f.input :departure_date, as: :hidden, input_html: { data: { datepicker_navbar_target: "endDate" } } %>
    <% end %>
+   <div class="right-element">
+   <% if user_signed_in? %>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn-deconnect" %>
+    <% else %>
+    <%= link_to "Sign in", new_user_session_path, class: "btn-deconnect" %>
+  <% end %>
     <div class="profile_navbar">
       <%= link_to dashboard_path do %>
       <i class="fas fa-user"></i>
       <% end %>
+    </div>
     </div>
 </div>
