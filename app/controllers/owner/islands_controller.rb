@@ -17,6 +17,15 @@ class Owner::IslandsController < ApplicationController
       @island.photos.attach(island_params[:photos])
     end
 
+    @result = Geocoder.coordinates(params[:island][:location]);
+
+    if @result
+      @island.gps_longitude = @result[0].to_s
+      @island.gps_latitude = @result[1].to_s
+    else
+      errors.add(:location, "Unable to find this location.")
+    end
+
     if @island.update(island_params.except(:photos))
       redirect_to dashboard_path, notice: 'The island was successfully updated!'
     else
