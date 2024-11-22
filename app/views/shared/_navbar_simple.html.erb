@@ -4,6 +4,9 @@
       <%= image_tag "Logo.png", alt: "logo-skybnb", width: 200 %>
     <% end %>
   </div>
+  <div class="name_user">
+    <h2><strong>Welcome <%= current_user.first_name %> ! </strong></h2>
+  </div>
 
     <div class="right-element">
    <% if user_signed_in? %>
