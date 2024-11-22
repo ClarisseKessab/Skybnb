@@ -3,18 +3,19 @@
   justify-content: space-between;
   align-items: center;
   background-color: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 105px;
+  border-bottom: solid #d6d6d6 0.5px;
+  height: 120px;
   width: 100%;
   margin-bottom: 40px;
 }
+
 
 .navbar-simple-container{
   padding-inline: 70px;
   justify-content: space-between;
   align-items: center;
   background-color: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: solid #d6d6d6 0.5px;
   height: 105px;
   width: 100%;
   margin-bottom: 40px;
@@ -66,4 +67,28 @@
   align-items: center;
 }
 
+.input-navbar{
+  border: solid #dadada 1px;
+  background-color: #FFFFFF;
+  box-shadow: none !important;
 
+}
+
+.fa-magnifying-glass{
+  padding-inline:-6px;
+  color: white;
+}
+
+.icon{
+  background: none; /* Enlever le fond gris */
+  border: none; /* Enlever la bordure par défaut */ /* Ajouter un peu de padding pour l'icône */
+  font-size: 20px; /* Taille de l'icône */
+  cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+  outline: none;
+
+}
+
+.input-navbar:valid,
+.input-navbar:invalid {
+  box-shadow: none !important; /* Supprime tout effet de bordure ou de shadow */
+}
