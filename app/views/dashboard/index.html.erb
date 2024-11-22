@@ -147,7 +147,3 @@
     <% end %>
   <% end %>
   </div>
-  <% if user_signed_in? %>
-    <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn-deconnect" %>
-  <% end %>
-</div>
