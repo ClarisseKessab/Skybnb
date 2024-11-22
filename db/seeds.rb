@@ -254,24 +254,34 @@ file15 = URI.parse("https://i.postimg.cc/bJvVWMJQ/DALL-E-2024-11-18-11-35-41-A-f
 islands[14].photos.attach(io: file15, filename: "scifi_island.png", content_type: "image/png")
 islands[14].save
 
-# Création de 2 à 3 réservations par utilisateur
-users.each do |user|
-  selected_islands = islands.sample(3)
+# # Création de 2 à 3 réservations par utilisateur
+# users.each do |user|
+#   selected_islands = islands.sample(3)
 
-  selected_islands.each do |island|
-    begin
-      Booking.create!(
-        start_date: Date.today + rand(1..10),
-        end_date: Date.today + rand(11..20),
-        status: ["confirmed", "pending", "cancelled"].sample,
-        island: island,
-        user: user,
-        travellers: rand(1..10),
-        paid_price: (rand(70.0..1000.0)).round(2)
-      )
-    rescue StandardError => e
-      puts "Error creating booking for user #{user.email} on island #{island.name}: #{e.message}"
-    end
-  end
-end
+#   selected_islands.each do |island|
+#     begin
+#       Booking.create!(
+#         start_date: Date.today + rand(1..10),
+#         end_date: Date.today + rand(11..20),
+#         status: ["confirmed", "pending", "cancelled"].sample,
+#         island: island,
+#         user: user,
+#         travellers: rand(1..10),
+#         paid_price: (rand(70.0..1000.0)).round(2)
+#       )
+#     rescue StandardError => e
+#       puts "Error creating booking for user #{user.email} on island #{island.name}: #{e.message}"
+#     end
+#   end
+# end
+
+Booking.create!(
+  start_date: Date.today,
+  end_date: Date.today + 1,
+  status: "pending",
+  island: islands[12],
+  user: user1,
+  travellers: 2,
+  paid_price: 180
+)
 puts "Bookings created!"
