@@ -27,7 +27,7 @@
           <div class="card-island-texts">
             <h5 class="card-island-title"><%= booking.island.name %></h5>
             <p class="card-island-text">
-              <strong><%= booking.start_date %></strong> au <strong><%= booking.end_date %></strong>
+              <strong><%= booking.start_date %></strong> to <strong><%= booking.end_date %></strong>
             </p>
           </div>
         </div>
@@ -148,6 +148,6 @@
   <% end %>
   </div>
   <% if user_signed_in? %>
-    <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn-deconnect" %>
+    <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn-deconnect" %>
   <% end %>
 </div>
