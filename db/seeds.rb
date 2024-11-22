@@ -267,7 +267,7 @@ users.each do |user|
         island: island,
         user: user,
         travellers: rand(1..10),
-        paid_price: (rand(100..1000) / 100.0).round(2)
+        paid_price: (rand(70.0..1000.0)).round(2)
       )
     rescue StandardError => e
       puts "Error creating booking for user #{user.email} on island #{island.name}: #{e.message}"
