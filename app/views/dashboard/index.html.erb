@@ -26,9 +26,11 @@
           </div>
           <div class="card-island-texts">
             <h5 class="card-island-title"><%= booking.island.name %></h5>
-            <p class="card-island-text">
-              <strong><%= booking.start_date %></strong> to <strong><%= booking.end_date %></strong>
+            <p class="card-island-text"><strong><%= booking.start_date %></strong> to <strong><%= booking.end_date %></strong>
             </p>
+            <p>Travellers: <strong><%= booking.travellers %></strong></p>
+            <p>Location: <strong><%= booking.island.location %></strong></p>
+
           </div>
         </div>
       <% end %>
@@ -75,7 +77,7 @@
           </div>
           <div class="card-island-texts">
             <h5 class="card-island-title"><%= booking.island.name %></h5>
-            <p>du <strong><%= booking.start_date %></strong> au <strong><%= booking.end_date %></strong></p>
+            <p><strong><%= booking.start_date %></strong> to <strong><%= booking.end_date %></strong></p>
             <% if booking.status == "pending" %>
               <div class="btns-pending">
                 <%= link_to accept_owner_booking_path(booking), data: {turbo_method: :patch} do %>
@@ -86,6 +88,8 @@
                 <% end %>
               </div>
             <% end %>
+            <p>Travellers: <strong><%= booking.travellers %></strong></p>
+            <p>Total price: <strong><%= booking.paid_price %>$</strong></p>
           </div>
         </div>
       <% end %>
