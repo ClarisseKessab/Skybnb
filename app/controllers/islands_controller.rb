@@ -24,8 +24,8 @@ class IslandsController < ApplicationController
     @island.user = current_user
     @result = Geocoder.coordinates(params[:island][:location]);
     if @result
-      @island.gps_longitude = @result[0].to_s
-      @island.gps_latitude = @result[1].to_s
+      @island.gps_latitude = @result[0].to_s
+      @island.gps_longitude = @result[1].to_s
     else
       errors.add(:location, "Unable to find this location.")
     end

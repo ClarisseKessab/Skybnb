@@ -3,9 +3,7 @@
   <%= simple_form_for [:owner, @island] do |f| %>
     <%= f.input :name, placeholder: "Enter the island name"%>
     <%= f.input :description, placeholder: "Describe the island" %>
-    <%= f.input :location, placeholder: "Where is the island located?" %>
-    <%= f.input :gps_longitude, placeholder: "Enter longitude" %>
-    <%= f.input :gps_latitude, placeholder: "Enter latitude" %>
+    <%= f.input :location, placeholder: "Enter the island's address or location" %>
     <%= f.input :capacity,  placeholder: "Max capacity" %>
     <div class="input-group">
       <div class="input-group-prepend">
