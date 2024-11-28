@@ -7,6 +7,11 @@ SkyBnB est une application web inspirée d'Airbnb, développée dans le cadre du
 
 [![Vidéo de démonstration SkyBnB](lien_vers_image_miniature)](lien_vers_video)
 
+
+https://github.com/user-attachments/assets/a3f74b63-0f0b-4af7-9132-c06d69e98bd8
+https://github.com/user-attachments/assets/0a523827-cdcd-4ba4-b020-e43ac8e24901
+
+
 Pour voir l'application en action, regardez notre vidéo de démonstration ! 
 Elle vous montrera les principales fonctionnalités de SkyBnB, notamment :
 - La navigation sur la page d'accueil
@@ -36,7 +41,7 @@ Elle vous montrera les principales fonctionnalités de SkyBnB, notamment :
 
 ```bash
 # Cloner le repository
-git clone git@github.com:votre-username/skybnb.git
+git clone git@github.com:ClarisseKessab/Skybnb.git
 
 # Installer les dépendances
 bundle install
