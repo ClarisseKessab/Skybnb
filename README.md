@@ -5,8 +5,10 @@ SkyBnB est une application web inspirée d'Airbnb, développée dans le cadre du
 
 ## 📸 Aperçu
 
-<img width="1440" alt="Skybnb - home" src="https://github.com/user-attachments/assets/fae80588-3e3c-44ff-9166-a0886934ca5b">
-<img width="1440" alt="Skybnb - dashboard" src="https://github.com/user-attachments/assets/82b0d4a0-a185-4bb6-a425-82f40c108b1b">
+<div style="display: flex;">
+<img width="500" alt="Skybnb - home" src="https://github.com/user-attachments/assets/fae80588-3e3c-44ff-9166-a0886934ca5b">
+<img width="500" alt="Skybnb - dashboard" src="https://github.com/user-attachments/assets/82b0d4a0-a185-4bb6-a425-82f40c108b1b">
+</div>
 
 Voici une idée de l'application ! 
 
