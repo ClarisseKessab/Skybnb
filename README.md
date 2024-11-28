@@ -3,18 +3,12 @@
 ## À propos
 SkyBnB est une application web inspirée d'Airbnb, développée dans le cadre du bootcamp Le Wagon. Notre twist unique ? Au lieu de proposer des locations d'appartements classiques, nous permettons aux utilisateurs de louer des îles flottantes fantastiques !
 
-## 🎥 Démonstration
+## 📸 Aperçu
 
-[![Vidéo de démonstration SkyBnB](lien_vers_image_miniature)](https://github.com/user-attachments/assets/89dfe29f-63da-46fd-aa17-f9f24e36bbab)
-[![Suite de démonstration SkyBnB](lien_vers_image_miniature)](https://github.com/user-attachments/assets/0a6e5bbd-3e10-4443-90e8-77d51d9b1fdc)
+<img width="1440" alt="Skybnb - home" src="https://github.com/user-attachments/assets/fae80588-3e3c-44ff-9166-a0886934ca5b">
+<img width="1440" alt="Skybnb - dashboard" src="https://github.com/user-attachments/assets/82b0d4a0-a185-4bb6-a425-82f40c108b1b">
 
-
-Pour voir l'application en action, regardez notre vidéo de démonstration ! 
-Elle vous montrera les principales fonctionnalités de SkyBnB, notamment :
-- La navigation sur la page d'accueil
-- Le processus de recherche d'une île flottante
-- La création d'une réservation
-- L'interface propriétaire
+Voici une idée de l'application ! 
 
 ## 🌟 Fonctionnalités principales
 
